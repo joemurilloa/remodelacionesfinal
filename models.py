@@ -57,7 +57,7 @@ class Cotizacion(db.Model):
     
     @property
     def iva(self):
-        return self.subtotal * 0.19  # 19% IVA en Chile
+        return self.subtotal * 0.07  # 7% IVA en Chile
     
     @property
     def total(self):
@@ -80,6 +80,7 @@ class ItemCotizacion(db.Model):
 
 class Factura(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    numero_factura = db.Column(db.String(20), unique=True, nullable=False)
     cliente_id = db.Column(db.Integer, db.ForeignKey('cliente.id'), nullable=False)
     cotizacion_id = db.Column(db.Integer, db.ForeignKey('cotizacion.id'), nullable=True)
     fecha = db.Column(db.DateTime, default=datetime.now)
@@ -92,7 +93,7 @@ class Factura(db.Model):
     items = db.relationship('ItemFactura', backref='factura', lazy=True, cascade="all, delete-orphan")
     
     def __repr__(self):
-        return f'<Factura #{self.id}>'
+        return f'<Factura #{self.numero_factura}>'
     
     @property
     def subtotal(self):
@@ -100,7 +101,7 @@ class Factura(db.Model):
     
     @property
     def iva(self):
-        return self.subtotal * 0.19  # 19% IVA en Chile
+        return self.subtotal * 0.07  # 7% IVA en Chile
     
     @property
     def total(self):

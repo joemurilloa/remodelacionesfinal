@@ -172,8 +172,25 @@ def pdf_cotizacion(id):
 def cotizacion_a_factura(id):
     cotizacion = Cotizacion.query.get_or_404(id)
     
+    # Generar número de factura único
+    # Formato: INV-YYYYMMDD-XXXX (donde XXXX es un número secuencial)
+    fecha_actual = datetime.now()
+    prefijo = f"INV-{fecha_actual.strftime('%Y%m%d')}-"
+    
+    # Buscar la última factura con este prefijo
+    ultima_factura = Factura.query.filter(Factura.numero_factura.like(f"{prefijo}%")).order_by(Factura.numero_factura.desc()).first()
+    
+    if ultima_factura:
+        # Extraer el número secuencial y aumentarlo en 1
+        ultimo_numero = int(ultima_factura.numero_factura.split('-')[-1])
+        nuevo_numero = f"{prefijo}{str(ultimo_numero + 1).zfill(4)}"
+    else:
+        # Si no hay facturas con este prefijo, empezar con 0001
+        nuevo_numero = f"{prefijo}0001"
+    
     # Crear nueva factura basada en la cotización
     nueva_factura = Factura(
+        numero_factura=nuevo_numero,
         cliente_id=cotizacion.cliente_id,
         cotizacion_id=cotizacion.id,
         fecha=datetime.now(),

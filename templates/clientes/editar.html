@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Cliente - Sistema de Cotizaciones{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1><i class="fas fa-user-edit me-2"></i>Editar Cliente</h1>
+    <a href="{{ url_for('listar_clientes') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left me-1"></i> Volver a la lista
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-light">
+        <h5 class="mb-0"><i class="fas fa-info-circle me-1"></i> Información del Cliente</h5>
+    </div>
+    <div class="card-body">
+        <form action="{{ url_for('editar_cliente', id=cliente.id) }}" method="post" id="form-cliente">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="nombre" class="form-label">Nombre o Razón Social <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ cliente.nombre }}" required>
+                    <div class="invalid-feedback">El nombre es obligatorio.</div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="rut" class="form-label">RUT</label>
+                    <input type="text" class="form-control" id="rut" name="rut" value="{{ cliente.rut }}" placeholder="12.345.678-9">
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ cliente.email }}" placeholder="ejemplo@correo.com">
+                    <div class="invalid-feedback">Por favor ingrese un email válido.</div>
+                </div>
+                
+                <div class="col-md-6 mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <input type="tel" class="form-control" id="telefono" name="telefono" value="{{ cliente.telefono }}" placeholder="+56 9 1234 5678">
+                </div>
+                
+                <div class="col-md-12 mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <textarea class="form-control" id="direccion" name="direccion" rows="2">{{ cliente.direccion }}</textarea>
+                </div>
+            </div>
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <a href="{{ url_for('listar_clientes') }}" class="btn btn-outline-secondary me-md-2">
+                    <i class="fas fa-times me-1"></i> Cancelar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save me-1"></i> Guardar Cambios
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Validación del formulario
+        const form = document.getElementById('form-cliente');
+        
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            form.classList.add('was-validated');
+        });
+        
+        // Formateo de RUT chileno (opcional)
+        const rutInput = document.getElementById('rut');
+        if (rutInput) {
+            rutInput.addEventListener('blur', function() {
+                let rut = this.value.replace(/\./g, '').replace('-', '');
+                if (rut.length > 1) {
+                    const dv = rut.slice(-1);
+                    rut = rut.slice(0, -1);
+                    
+                    // Formatear número
+                    rut = rut.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                    
+                    // Agregar guión y dígito verificador
+                    this.value = rut + '-' + dv;
+                }
+            });
+        }
+    });
+</script>
+{% endblock %} 

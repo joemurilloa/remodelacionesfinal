@@ -139,7 +139,7 @@ def generar_pdf_cotizacion(cotizacion):
     # Add totals
     items_data.append(['', '', '<b>Subtotal:</b>', format_currency(cotizacion.subtotal)])
     # Using Chilean tax rate
-    tax_rate = 0.19  # 19% IVA en Chile
+    tax_rate = 0.07  # 7% IVA en Chile
     tax_amount = cotizacion.subtotal * tax_rate
     total = cotizacion.subtotal + tax_amount
     items_data.append(['', '', f'<b>IVA ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
@@ -168,6 +168,25 @@ def generar_pdf_cotizacion(cotizacion):
     elements.append(Paragraph("3. Payment methods: Bank transfer, check, or credit card.", styles['Normal']))
     elements.append(Paragraph("4. 50% deposit required to start the project.", styles['Normal']))
     elements.append(Paragraph("5. Full payment is due upon completion of the work.", styles['Normal']))
+    
+    # Add signature spaces
+    elements.append(Spacer(1, 1*inch))
+    
+    # Create signature table
+    signature_data = [
+        ["_______________________", "_______________________"],
+        ["Cliente", "Representante WNL FLOORING"],
+        ["", ""],
+        ["Fecha", "Fecha"]
+    ]
+    
+    signature_table = Table(signature_data, colWidths=[doc.width/2.0, doc.width/2.0])
+    signature_table.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 1), (-1, 1), 'Helvetica-Bold'),
+        ('FONTNAME', (0, 3), (-1, 3), 'Helvetica-Bold'),
+    ]))
+    elements.append(signature_table)
     
     # Generate PDF
     doc.build(elements)
@@ -239,7 +258,7 @@ def generar_pdf_factura(factura):
     elements.append(Spacer(1, 0.25*inch))
     
     # Title
-    title = Paragraph(f"<font size='16'><b>INVOICE #{factura.id}</b></font>", styles['Center'])
+    title = Paragraph(f"<font size='16'><b>INVOICE #{factura.numero_factura}</b></font>", styles['Center'])
     elements.append(title)
     elements.append(Spacer(1, 0.25*inch))
     
@@ -308,11 +327,11 @@ def generar_pdf_factura(factura):
     
     # Add totals
     items_data.append(['', '', '<b>Subtotal:</b>', format_currency(factura.subtotal)])
-    # Using Chilean tax rate
-    tax_rate = 0.19  # 19% IVA en Chile
+    # Using 7% tax rate
+    tax_rate = 0.07
     tax_amount = factura.subtotal * tax_rate
     total = factura.subtotal + tax_amount
-    items_data.append(['', '', f'<b>IVA ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
+    items_data.append(['', '', f'<b>Tax ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
     items_data.append(['', '', '<b>TOTAL:</b>', format_currency(total)])
     
     # Create items table
@@ -331,30 +350,43 @@ def generar_pdf_factura(factura):
     elements.append(items_table)
     
     # Payment status
-    elements.append(Spacer(1, 0.25*inch))
-    estado_pago = "PAID" if factura.pagada else "PENDING PAYMENT"
-    estado_style = 'Heading2'
-    estado_color = colors.green if factura.pagada else colors.red
+    if factura.pagada:
+        status_text = f"<font color='green'><b>PAID</b></font> - Payment Date: {factura.fecha_pago.strftime('%m/%d/%Y')}"
+    else:
+        status_text = "<font color='red'><b>UNPAID</b></font>"
     
-    estado_paragraph = Paragraph(f"<font color={estado_color}><b>{estado_pago}</b></font>", styles[estado_style])
-    elements.append(estado_paragraph)
-    
-    # Payment information
     elements.append(Spacer(1, 0.25*inch))
-    elements.append(Paragraph("<b>Payment Information:</b>", styles['Normal']))
-    elements.append(Paragraph("Bank: Chase Bank", styles['Normal']))
-    elements.append(Paragraph("Account Type: Business Checking", styles['Normal']))
-    elements.append(Paragraph("Account Number: XXX-XXXX-XXX", styles['Normal']))
-    elements.append(Paragraph("Routing Number: XXXXXXXX", styles['Normal']))
-    elements.append(Paragraph("Account Name: WNL FLOORING LLC", styles['Normal']))
-    elements.append(Paragraph("Email: wnlflooring@gmail.com", styles['Normal']))
+    elements.append(Paragraph(f"<b>Payment Status:</b> {status_text}", styles['Normal']))
     
     # Final notes
-    elements.append(Spacer(1, 0.25*inch))
-    elements.append(Paragraph("<b>Notes:</b>", styles['Normal']))
-    elements.append(Paragraph("1. Please include the invoice number in your payment reference.", styles['Normal']))
-    elements.append(Paragraph("2. Payment is due within 15 days of invoice date.", styles['Normal']))
-    elements.append(Paragraph("3. For questions regarding this invoice, please contact us at (786) 762-6304.", styles['Normal']))
+    elements.append(Spacer(1, 0.5*inch))
+    elements.append(Paragraph("<b>Payment Instructions:</b>", styles['Normal']))
+    elements.append(Paragraph("1. Please make payment within the specified due date.", styles['Normal']))
+    elements.append(Paragraph("2. Payment methods: Bank transfer, check, or credit card.", styles['Normal']))
+    elements.append(Paragraph("3. For bank transfers, please use the following account:", styles['Normal']))
+    elements.append(Paragraph("   Bank: [Bank Name]", styles['Normal']))
+    elements.append(Paragraph("   Account: [Account Number]", styles['Normal']))
+    elements.append(Paragraph("   Routing: [Routing Number]", styles['Normal']))
+    elements.append(Paragraph("4. Please include the invoice number in your payment reference.", styles['Normal']))
+    
+    # Add signature spaces
+    elements.append(Spacer(1, 1*inch))
+    
+    # Create signature table
+    signature_data = [
+        ["_______________________", "_______________________"],
+        ["Client", "WNL FLOORING"],
+        ["", ""],
+        ["Date", "Date"]
+    ]
+    
+    signature_table = Table(signature_data, colWidths=[doc.width/2.0, doc.width/2.0])
+    signature_table.setStyle(TableStyle([
+        ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('FONTNAME', (0, 1), (-1, 1), 'Helvetica-Bold'),
+        ('FONTNAME', (0, 3), (-1, 3), 'Helvetica-Bold'),
+    ]))
+    elements.append(signature_table)
     
     # Generate PDF
     doc.build(elements)
