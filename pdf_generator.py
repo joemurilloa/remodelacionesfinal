@@ -34,7 +34,6 @@ def generar_pdf_cotizacion(cotizacion):
     styles.add(ParagraphStyle(name='Right', alignment=2))
     
     # Header with logo and company info (top of document)
-    # Logo is placed to the left, company info to the right
     logo_path = os.path.join('static', 'img', 'logo.png')
     
     # Create a table for the header (logo + company info)
@@ -43,9 +42,8 @@ def generar_pdf_cotizacion(cotizacion):
     # First column: Logo
     if os.path.exists(logo_path):
         logo = Image(logo_path)
-        # Make logo circular by setting equal dimensions
-        logo.drawHeight = 1 * inch
-        logo.drawWidth = 1 * inch
+        logo.drawHeight = 0.75 * inch
+        logo.drawWidth = 0.75 * inch
         header_data[0].append(logo)
     else:
         header_data[0].append("")
@@ -60,19 +58,19 @@ def generar_pdf_cotizacion(cotizacion):
     header_data[0].append(Paragraph(company_info, styles['Normal']))
     
     # Create the header table
-    header_table = Table(header_data, colWidths=[1.5*inch, 5*inch])
+    header_table = Table(header_data, colWidths=[1*inch, 5*inch])
     header_table.setStyle(TableStyle([
         ('ALIGN', (0, 0), (0, 0), 'LEFT'),
         ('ALIGN', (1, 0), (1, 0), 'RIGHT'),
         ('VALIGN', (0, 0), (1, 0), 'TOP'),
     ]))
     elements.append(header_table)
-    elements.append(Spacer(1, 0.25*inch))
+    elements.append(Spacer(1, 0.15*inch))
     
     # Title
-    title = Paragraph(f"<font size='16'><b>QUOTE #{cotizacion.id}</b></font>", styles['Center'])
+    title = Paragraph(f"<font size='14'><b>QUOTE #{cotizacion.id}</b></font>", styles['Center'])
     elements.append(title)
-    elements.append(Spacer(1, 0.25*inch))
+    elements.append(Spacer(1, 0.15*inch))
     
     # Client information
     data = [
@@ -91,12 +89,12 @@ def generar_pdf_cotizacion(cotizacion):
         ('TEXTCOLOR', (0, 0), (0, 0), colors.black),
         ('ALIGN', (0, 0), (0, 0), 'LEFT'),
         ('FONTNAME', (0, 0), (0, 0), 'Helvetica-Bold'),
-        ('BOTTOMPADDING', (0, 0), (0, 0), 12),
+        ('BOTTOMPADDING', (0, 0), (0, 0), 8),
         ('BACKGROUND', (0, 1), (0, -1), colors.white),
         ('GRID', (0, 0), (-1, -1), 1, colors.black)
     ]))
     elements.append(info_table)
-    elements.append(Spacer(1, 0.25*inch))
+    elements.append(Spacer(1, 0.15*inch))
     
     # Date and validity
     fecha_formato = cotizacion.fecha.strftime("%m/%d/%Y")
@@ -113,19 +111,19 @@ def generar_pdf_cotizacion(cotizacion):
         ('FONTNAME', (0, 0), (0, -1), 'Helvetica-Bold'),
     ]))
     elements.append(fecha_table)
-    elements.append(Spacer(1, 0.25*inch))
+    elements.append(Spacer(1, 0.15*inch))
     
     # Quote description
     if cotizacion.descripcion:
         elements.append(Paragraph("<b>Description:</b>", styles['Normal']))
         elements.append(Paragraph(cotizacion.descripcion, styles['Normal']))
-        elements.append(Spacer(1, 0.25*inch))
+        elements.append(Spacer(1, 0.15*inch))
     
     # Quote items
     elements.append(Paragraph("<b>Quote Details:</b>", styles['Normal']))
     
     # Item table header
-    items_data = [['Item', 'Quantity', 'Unit Price', 'Subtotal']]
+    items_data = [['Item', 'Qty', 'Unit Price', 'Subtotal']]
     
     # Add items
     for item in cotizacion.items:
@@ -137,13 +135,12 @@ def generar_pdf_cotizacion(cotizacion):
         ])
     
     # Add totals
-    items_data.append(['', '', '<b>Subtotal:</b>', format_currency(cotizacion.subtotal)])
-    # Using Chilean tax rate
-    tax_rate = 0.07  # 7% IVA en Chile
+    items_data.append(['', '', 'Subtotal:', format_currency(cotizacion.subtotal)])
+    tax_rate = 0.07  # 7% tax rate
     tax_amount = cotizacion.subtotal * tax_rate
     total = cotizacion.subtotal + tax_amount
-    items_data.append(['', '', f'<b>IVA ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
-    items_data.append(['', '', '<b>TOTAL:</b>', format_currency(total)])
+    items_data.append(['', '', f'Tax ({int(tax_rate*100)}%):', format_currency(tax_amount)])
+    items_data.append(['', '', 'TOTAL:', format_currency(total)])
     
     # Create items table
     items_table = Table(items_data, colWidths=[doc.width*0.4, doc.width*0.1, doc.width*0.25, doc.width*0.25])
@@ -153,7 +150,8 @@ def generar_pdf_cotizacion(cotizacion):
         ('ALIGN', (0, 0), (0, -1), 'LEFT'),
         ('ALIGN', (1, 0), (3, -1), 'RIGHT'),
         ('FONTNAME', (0, 0), (3, 0), 'Helvetica-Bold'),
-        ('BOTTOMPADDING', (0, 0), (3, 0), 12),
+        ('FONTNAME', (2, -3), (2, -1), 'Helvetica-Bold'),  # Make totals bold
+        ('BOTTOMPADDING', (0, 0), (3, 0), 8),
         ('BACKGROUND', (0, 1), (-1, -1), colors.white),
         ('GRID', (0, 0), (-1, -2), 1, colors.black),
         ('LINEBELOW', (2, -3), (3, -1), 1, colors.black),
@@ -161,23 +159,22 @@ def generar_pdf_cotizacion(cotizacion):
     elements.append(items_table)
     
     # Final notes
-    elements.append(Spacer(1, 0.5*inch))
+    elements.append(Spacer(1, 0.25*inch))
     elements.append(Paragraph("<b>Terms and Conditions:</b>", styles['Normal']))
     elements.append(Paragraph("1. This quote is valid until the date specified above.", styles['Normal']))
     elements.append(Paragraph("2. Prices may change without notice after the expiration date.", styles['Normal']))
     elements.append(Paragraph("3. Payment methods: Bank transfer, check, or credit card.", styles['Normal']))
     elements.append(Paragraph("4. 50% deposit required to start the project.", styles['Normal']))
-    elements.append(Paragraph("5. Full payment is due upon completion of the work.", styles['Normal']))
     
     # Add signature spaces
-    elements.append(Spacer(1, 1*inch))
+    elements.append(Spacer(1, 0.5*inch))
     
     # Create signature table
     signature_data = [
         ["_______________________", "_______________________"],
-        ["Cliente", "Representante WNL FLOORING"],
+        ["Client", "WNL FLOORING"],
         ["", ""],
-        ["Fecha", "Fecha"]
+        ["Date", "Date"]
     ]
     
     signature_table = Table(signature_data, colWidths=[doc.width/2.0, doc.width/2.0])
@@ -191,16 +188,16 @@ def generar_pdf_cotizacion(cotizacion):
     # Generate PDF
     doc.build(elements)
     
-    # Sincronizar PDFs de cotizaciones con Google Drive
+    # Sync PDFs with Google Drive
     try:
         import logging
         import backup_drive
         success, message = backup_drive.sincronizar_pdfs_cotizaciones()
         if not success:
-            logging.error(f"Error al sincronizar cotizaciones con Drive: {message}")
+            logging.error(f"Error syncing quotes with Drive: {message}")
     except Exception as e:
         import logging
-        logging.error(f"Error al sincronizar cotizaciones con Drive: {str(e)}")
+        logging.error(f"Error syncing quotes with Drive: {str(e)}")
     
     return f"cotizacion_{cotizacion.id}.pdf"
 
@@ -326,13 +323,13 @@ def generar_pdf_factura(factura):
         ])
     
     # Add totals
-    items_data.append(['', '', '<b>Subtotal:</b>', format_currency(factura.subtotal)])
+    items_data.append(['', '', 'Subtotal:', format_currency(factura.subtotal)])
     # Using 7% tax rate
     tax_rate = 0.07
     tax_amount = factura.subtotal * tax_rate
     total = factura.subtotal + tax_amount
-    items_data.append(['', '', f'<b>Tax ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
-    items_data.append(['', '', '<b>TOTAL:</b>', format_currency(total)])
+    items_data.append(['', '', f'Tax ({int(tax_rate*100)}%):', format_currency(tax_amount)])
+    items_data.append(['', '', 'TOTAL:', format_currency(total)])
     
     # Create items table
     items_table = Table(items_data, colWidths=[doc.width*0.4, doc.width*0.1, doc.width*0.25, doc.width*0.25])
@@ -342,6 +339,7 @@ def generar_pdf_factura(factura):
         ('ALIGN', (0, 0), (0, -1), 'LEFT'),
         ('ALIGN', (1, 0), (3, -1), 'RIGHT'),
         ('FONTNAME', (0, 0), (3, 0), 'Helvetica-Bold'),
+        ('FONTNAME', (2, -3), (2, -1), 'Helvetica-Bold'),  # Make totals bold
         ('BOTTOMPADDING', (0, 0), (3, 0), 12),
         ('BACKGROUND', (0, 1), (-1, -1), colors.white),
         ('GRID', (0, 0), (-1, -2), 1, colors.black),
@@ -351,12 +349,12 @@ def generar_pdf_factura(factura):
     
     # Payment status
     if factura.pagada:
-        status_text = f"<font color='green'><b>PAID</b></font> - Payment Date: {factura.fecha_pago.strftime('%m/%d/%Y')}"
+        status_text = f"<b>Payment Status:</b> <font color='green'><b>PAID</b></font> - Payment Date: {factura.fecha_pago.strftime('%m/%d/%Y')}"
     else:
-        status_text = "<font color='red'><b>UNPAID</b></font>"
+        status_text = f"<b>Payment Status:</b> <font color='red'><b>UNPAID</b></font>"
     
     elements.append(Spacer(1, 0.25*inch))
-    elements.append(Paragraph(f"<b>Payment Status:</b> {status_text}", styles['Normal']))
+    elements.append(Paragraph(status_text, styles['Normal']))
     
     # Final notes
     elements.append(Spacer(1, 0.5*inch))

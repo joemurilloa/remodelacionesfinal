@@ -146,7 +146,6 @@ def nueva_cotizacion():
         flash('Cotización creada correctamente')
         return redirect(url_for('ver_cotizacion', id=nueva_cotizacion.id))
     
-    # Este return estaba mal indentado y hacía que la función fallara en solicitudes GET
     return render_template('cotizaciones/nueva_cotizacion.html', clientes=clientes, now=now)
 
 
@@ -193,8 +192,7 @@ def cotizacion_a_factura(id):
         numero_factura=nuevo_numero,
         cliente_id=cotizacion.cliente_id,
         cotizacion_id=cotizacion.id,
-        fecha=datetime.now(),
-        descripcion=f"Factura basada en cotización #{cotizacion.id}"
+        fecha=datetime.now()
     )
     
     db.session.add(nueva_factura)
