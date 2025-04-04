@@ -2,10 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, flash, sen
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
-from models import db, Cliente, Cotizacion, Factura, ItemCotizacion, ItemFactura
+from models import db, Cliente, Cotizacion, Factura, ItemCotizacion, ItemFactura, CuentaBancaria, CategoriaTransaccion, Transaccion
 import pdf_generator
 import backup_drive
 import logging
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'clave_secreta_para_desarrollo'
@@ -275,6 +276,145 @@ def realizar_backup():
 @app.route('/saludz')
 def health_check():
     return "OK", 200
+
+# Rutas para el módulo de cashflow
+@app.route('/cashflow')
+def cashflow_dashboard():
+    cuentas = CuentaBancaria.query.all()
+    categorias = CategoriaTransaccion.query.all()
+    transacciones = Transaccion.query.order_by(Transaccion.fecha.desc()).all()
+    
+    # Calcular totales
+    total_ingresos = sum(t.monto for t in transacciones if t.tipo == 'ingreso')
+    total_gastos = sum(t.monto for t in transacciones if t.tipo == 'gasto')
+    balance = total_ingresos - total_gastos
+    
+    return render_template('cashflow/dashboard.html', 
+                         cuentas=cuentas, 
+                         categorias=categorias, 
+                         transacciones=transacciones,
+                         total_ingresos=total_ingresos,
+                         total_gastos=total_gastos,
+                         balance=balance)
+
+@app.route('/cashflow/cuentas', methods=['GET', 'POST'])
+def gestionar_cuentas():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        tipo = request.form['tipo']
+        saldo_inicial = float(request.form.get('saldo_inicial', 0))
+        
+        nueva_cuenta = CuentaBancaria(
+            nombre=nombre,
+            tipo=tipo,
+            saldo_actual=saldo_inicial
+        )
+        
+        db.session.add(nueva_cuenta)
+        db.session.commit()
+        
+        flash('Cuenta creada correctamente')
+        return redirect(url_for('cashflow_dashboard'))
+    
+    cuentas = CuentaBancaria.query.all()
+    return render_template('cashflow/cuentas.html', cuentas=cuentas)
+
+@app.route('/cashflow/categorias', methods=['GET', 'POST'])
+def gestionar_categorias():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        tipo = request.form['tipo']
+        descripcion = request.form.get('descripcion')
+        
+        nueva_categoria = CategoriaTransaccion(
+            nombre=nombre,
+            tipo=tipo,
+            descripcion=descripcion
+        )
+        
+        db.session.add(nueva_categoria)
+        db.session.commit()
+        
+        flash('Categoría creada correctamente')
+        return redirect(url_for('cashflow_dashboard'))
+    
+    categorias = CategoriaTransaccion.query.all()
+    return render_template('cashflow/categorias.html', categorias=categorias)
+
+@app.route('/cashflow/transacciones', methods=['GET', 'POST'])
+def gestionar_transacciones():
+    if request.method == 'POST':
+        cuenta_id = request.form['cuenta_id']
+        categoria_id = request.form['categoria_id']
+        fecha = datetime.strptime(request.form['fecha'], '%Y-%m-%d')
+        monto = float(request.form['monto'])
+        tipo = request.form['tipo']
+        descripcion = request.form.get('descripcion')
+        
+        # Manejar comprobante si se subió uno
+        comprobante = None
+        if 'comprobante' in request.files:
+            archivo = request.files['comprobante']
+            if archivo.filename:
+                filename = secure_filename(archivo.filename)
+                # Asegurarse de que el directorio existe
+                comprobantes_dir = os.path.join('static', 'comprobantes')
+                os.makedirs(comprobantes_dir, exist_ok=True)
+                # Guardar el archivo
+                archivo.save(os.path.join(comprobantes_dir, filename))
+                comprobante = filename
+        
+        nueva_transaccion = Transaccion(
+            cuenta_id=cuenta_id,
+            categoria_id=categoria_id,
+            fecha=fecha,
+            monto=monto,
+            tipo=tipo,
+            descripcion=descripcion,
+            comprobante=comprobante
+        )
+        
+        db.session.add(nueva_transaccion)
+        nueva_transaccion.aplicar_transaccion()
+        db.session.commit()
+        
+        flash('Transacción registrada correctamente')
+        return redirect(url_for('cashflow_dashboard'))
+    
+    cuentas = CuentaBancaria.query.all()
+    categorias = CategoriaTransaccion.query.all()
+    transacciones = Transaccion.query.order_by(Transaccion.fecha.desc()).all()
+    return render_template('cashflow/transacciones.html', 
+                         cuentas=cuentas, 
+                         categorias=categorias, 
+                         transacciones=transacciones)
+
+@app.route('/cashflow/exportar-reporte')
+def exportar_reporte_financiero():
+    try:
+        # Obtener datos para el reporte dentro del contexto de la aplicación
+        with app.app_context():
+            # Obtener datos para el reporte
+            transacciones = Transaccion.query.order_by(Transaccion.fecha).all()
+            cuentas = CuentaBancaria.query.all()
+            categorias = CategoriaTransaccion.query.all()
+            
+            # Crear el reporte en Google Sheets
+            exito, mensaje = backup_drive.exportar_reporte_financiero(
+                transacciones=transacciones,
+                cuentas=cuentas,
+                categorias=categorias
+            )
+            
+            if exito:
+                flash(f'Reporte financiero exportado correctamente. {mensaje}', 'success')
+            else:
+                flash(f'Error al exportar reporte: {mensaje}', 'error')
+    except Exception as e:
+        flash(f'Error al exportar reporte: {str(e)}', 'error')
+        logging.error(f"Error al exportar reporte financiero: {str(e)}")
+    
+    return redirect(url_for('cashflow_dashboard'))
 
 if __name__ == '__main__':
     app.run(debug=True)

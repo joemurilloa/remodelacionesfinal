@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Gestionar Cuentas</h1>
+    
+    <!-- Formulario para nueva cuenta -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Nueva Cuenta</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre de la Cuenta</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo de Cuenta</label>
+                            <select class="form-select" id="tipo" name="tipo" required>
+                                <option value="banco">Banco</option>
+                                <option value="caja">Caja</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="saldo_inicial" class="form-label">Saldo Inicial</label>
+                            <input type="number" step="0.01" class="form-control" id="saldo_inicial" name="saldo_inicial" value="0">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Crear Cuenta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lista de cuentas -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Cuentas Existentes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Saldo Actual</th>
+                                    <th>Fecha de Creación</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cuenta in cuentas %}
+                                <tr>
+                                    <td>{{ cuenta.nombre }}</td>
+                                    <td>
+                                        <span class="badge {% if cuenta.tipo == 'banco' %}bg-primary{% else %}bg-info{% endif %}">
+                                            {{ cuenta.tipo }}
+                                        </span>
+                                    </td>
+                                    <td>${{ "%.2f"|format(cuenta.saldo_actual) }}</td>
+                                    <td>{{ cuenta.fecha_creacion.strftime('%Y-%m-%d') }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

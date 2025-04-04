@@ -19,7 +19,7 @@ logging.basicConfig(
 )
 
 # Configuración de Google Drive API
-SCOPES = ['https://www.googleapis.com/auth/drive.file']
+SCOPES = ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/spreadsheets']
 CREDENTIALS_FILE = 'credentials.json'
 TOKEN_FILE = 'token.json'
 BACKUP_FOLDER_NAME = 'sistema_cotizaciones_backups'
@@ -509,6 +509,182 @@ def subir_a_drive(backup_file):
     except Exception as e:
         logging.error(f"Error al subir backup a Google Drive: {str(e)}")
         raise
+
+def exportar_reporte_financiero(transacciones, cuentas, categorias):
+    try:
+        # Autenticar con Google
+        creds = None
+        if os.path.exists(TOKEN_FILE):
+            creds = Credentials.from_authorized_user_info(
+                json.loads(open(TOKEN_FILE).read()), SCOPES)
+        
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    CREDENTIALS_FILE, SCOPES)
+                creds = flow.run_local_server(port=0)
+            
+            with open(TOKEN_FILE, 'w') as token:
+                token.write(creds.to_json())
+        
+        # Crear servicios
+        drive_service = build('drive', 'v3', credentials=creds)
+        sheets_service = build('sheets', 'v4', credentials=creds)
+        
+        # Crear un nuevo archivo de Google Sheets
+        spreadsheet = {
+            'properties': {
+                'title': f'Reporte Financiero - {datetime.datetime.now().strftime("%Y-%m-%d")}'
+            }
+        }
+        
+        # Crear el archivo en Google Drive
+        spreadsheet = sheets_service.spreadsheets().create(body=spreadsheet).execute()
+        spreadsheet_id = spreadsheet['spreadsheetId']
+        
+        # Preparar datos para el resumen
+        total_ingresos = sum(t.monto for t in transacciones if t.tipo == 'ingreso')
+        total_gastos = sum(t.monto for t in transacciones if t.tipo == 'gasto')
+        balance = total_ingresos - total_gastos
+        
+        resumen_data = [
+            ['Resumen Financiero', '', '', ''],
+            ['', '', '', ''],
+            ['Total Ingresos', '{:,.2f}'.format(total_ingresos), '', ''],
+            ['Total Gastos', '{:,.2f}'.format(total_gastos), '', ''],
+            ['Balance', '{:,.2f}'.format(balance), '', ''],
+            ['', '', '', ''],
+            ['Saldos por Cuenta', '', '', ''],
+            ['Cuenta', 'Tipo', 'Saldo Actual', '']
+        ]
+        
+        for cuenta in cuentas:
+            resumen_data.append([
+                cuenta.nombre,
+                cuenta.tipo,
+                '{:,.2f}'.format(cuenta.saldo_actual),
+                ''
+            ])
+        
+        # Preparar datos de transacciones
+        transacciones_data = [
+            ['Fecha', 'Cuenta', 'Categoría', 'Tipo', 'Monto', 'Descripción']
+        ]
+        
+        for t in transacciones:
+            transacciones_data.append([
+                t.fecha.strftime('%Y-%m-%d'),
+                t.cuenta.nombre,
+                t.categoria.nombre,
+                t.tipo,
+                '{:,.2f}'.format(t.monto),
+                t.descripcion or ''
+            ])
+        
+        # Preparar análisis por categoría
+        categorias_data = [
+            ['Categoría', 'Tipo', 'Total', '']
+        ]
+        
+        for categoria in categorias:
+            total = sum(t.monto for t in transacciones if t.categoria_id == categoria.id)
+            categorias_data.append([
+                categoria.nombre,
+                categoria.tipo,
+                '{:,.2f}'.format(total),
+                ''
+            ])
+        
+        # Actualizar las hojas con los datos
+        sheets_service.spreadsheets().values().update(
+            spreadsheetId=spreadsheet_id,
+            range='Sheet1!A1',
+            valueInputOption='USER_ENTERED',
+            body={'values': resumen_data}
+        ).execute()
+        
+        # Crear nueva hoja para transacciones
+        body = {
+            'requests': [
+                {
+                    'addSheet': {
+                        'properties': {
+                            'title': 'Transacciones'
+                        }
+                    }
+                },
+                {
+                    'addSheet': {
+                        'properties': {
+                            'title': 'Análisis por Categoría'
+                        }
+                    }
+                }
+            ]
+        }
+        sheets_service.spreadsheets().batchUpdate(
+            spreadsheetId=spreadsheet_id,
+            body=body
+        ).execute()
+        
+        # Actualizar datos en las hojas correspondientes
+        sheets_service.spreadsheets().values().update(
+            spreadsheetId=spreadsheet_id,
+            range='Transacciones!A1',
+            valueInputOption='USER_ENTERED',
+            body={'values': transacciones_data}
+        ).execute()
+        
+        sheets_service.spreadsheets().values().update(
+            spreadsheetId=spreadsheet_id,
+            range='Análisis por Categoría!A1',
+            valueInputOption='USER_ENTERED',
+            body={'values': categorias_data}
+        ).execute()
+        
+        # Aplicar formato
+        formato_requests = [
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 0,  # Primera hoja (Resumen)
+                        'startRowIndex': 0,
+                        'endRowIndex': 1
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.2, 'green': 0.2, 'blue': 0.2},
+                            'textFormat': {
+                                'foregroundColor': {'red': 1, 'green': 1, 'blue': 1},
+                                'fontSize': 14,
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            }
+        ]
+        
+        sheets_service.spreadsheets().batchUpdate(
+            spreadsheetId=spreadsheet_id,
+            body={'requests': formato_requests}
+        ).execute()
+        
+        # Hacer público el archivo para cualquiera con el enlace
+        drive_service.permissions().create(
+            fileId=spreadsheet_id,
+            body={'type': 'anyone', 'role': 'reader'},
+            fields='id'
+        ).execute()
+        
+        return True, f'Reporte creado correctamente. ID: {spreadsheet_id}'
+    except Exception as e:
+        logging.error(f"Error al exportar reporte financiero: {str(e)}")
+        return False, str(e)
 
 def main():
     """Función principal para ejecutar el backup."""

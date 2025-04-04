@@ -121,3 +121,53 @@ class ItemFactura(db.Model):
     @property
     def subtotal(self):
         return self.cantidad * self.precio_unitario
+
+class CuentaBancaria(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    tipo = db.Column(db.String(20), nullable=False)  # 'banco' o 'caja'
+    saldo_actual = db.Column(db.Float, default=0.0)
+    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
+    
+    # Relaciones
+    transacciones = db.relationship('Transaccion', backref='cuenta', lazy=True)
+    
+    def __repr__(self):
+        return f'<CuentaBancaria {self.nombre}>'
+    
+    def actualizar_saldo(self, monto, es_ingreso):
+        if es_ingreso:
+            self.saldo_actual += monto
+        else:
+            self.saldo_actual -= monto
+        db.session.commit()
+
+class CategoriaTransaccion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    tipo = db.Column(db.String(20), nullable=False)  # 'ingreso' o 'gasto'
+    descripcion = db.Column(db.Text, nullable=True)
+    
+    # Relaciones
+    transacciones = db.relationship('Transaccion', backref='categoria', lazy=True)
+    
+    def __repr__(self):
+        return f'<CategoriaTransaccion {self.nombre}>'
+
+class Transaccion(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cuenta_id = db.Column(db.Integer, db.ForeignKey('cuenta_bancaria.id'), nullable=False)
+    categoria_id = db.Column(db.Integer, db.ForeignKey('categoria_transaccion.id'), nullable=False)
+    fecha = db.Column(db.DateTime, default=datetime.now)
+    monto = db.Column(db.Float, nullable=False)
+    tipo = db.Column(db.String(20), nullable=False)  # 'ingreso' o 'gasto'
+    descripcion = db.Column(db.Text, nullable=True)
+    comprobante = db.Column(db.String(200), nullable=True)  # Ruta al archivo de comprobante
+    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
+    
+    def __repr__(self):
+        return f'<Transaccion {self.tipo} {self.monto}>'
+    
+    def aplicar_transaccion(self):
+        cuenta = CuentaBancaria.query.get(self.cuenta_id)
+        cuenta.actualizar_saldo(self.monto, self.tipo == 'ingreso')

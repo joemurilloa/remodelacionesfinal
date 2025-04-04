@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Gestionar Transacciones</h1>
+    
+    <!-- Formulario para nueva transacción -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Nueva Transacción</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="cuenta_id" class="form-label">Cuenta</label>
+                            <select class="form-select" id="cuenta_id" name="cuenta_id" required>
+                                {% for cuenta in cuentas %}
+                                <option value="{{ cuenta.id }}">{{ cuenta.nombre }} ({{ cuenta.tipo }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="categoria_id" class="form-label">Categoría</label>
+                            <select class="form-select" id="categoria_id" name="categoria_id" required>
+                                {% for categoria in categorias %}
+                                <option value="{{ categoria.id }}">{{ categoria.nombre }} ({{ categoria.tipo }})</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fecha" class="form-label">Fecha</label>
+                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo de Transacción</label>
+                            <select class="form-select" id="tipo" name="tipo" required>
+                                <option value="ingreso">Ingreso</option>
+                                <option value="gasto">Gasto</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto</label>
+                            <input type="number" step="0.01" class="form-control" id="monto" name="monto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="comprobante" class="form-label">Comprobante</label>
+                            <input type="file" class="form-control" id="comprobante" name="comprobante">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrar Transacción</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Lista de transacciones -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Historial de Transacciones</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Cuenta</th>
+                                    <th>Categoría</th>
+                                    <th>Tipo</th>
+                                    <th>Monto</th>
+                                    <th>Descripción</th>
+                                    <th>Comprobante</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transaccion in transacciones %}
+                                <tr>
+                                    <td>{{ transaccion.fecha.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ transaccion.cuenta.nombre }}</td>
+                                    <td>{{ transaccion.categoria.nombre }}</td>
+                                    <td>
+                                        <span class="badge {% if transaccion.tipo == 'ingreso' %}bg-success{% else %}bg-danger{% endif %}">
+                                            {{ transaccion.tipo }}
+                                        </span>
+                                    </td>
+                                    <td>${{ "%.2f"|format(transaccion.monto) }}</td>
+                                    <td>{{ transaccion.descripcion }}</td>
+                                    <td>
+                                        {% if transaccion.comprobante %}
+                                        <a href="{{ url_for('static', filename='comprobantes/' + transaccion.comprobante) }}" target="_blank">
+                                            Ver comprobante
+                                        </a>
+                                        {% else %}
+                                        -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

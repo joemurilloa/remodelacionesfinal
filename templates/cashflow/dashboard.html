@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Dashboard de Cashflow</h1>
+    
+    <!-- Resumen financiero -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Ingresos</h5>
+                    <h3 class="card-text">${{ "%.2f"|format(total_ingresos) }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Total Gastos</h5>
+                    <h3 class="card-text">${{ "%.2f"|format(total_gastos) }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card {% if balance >= 0 %}bg-primary{% else %}bg-warning{% endif %} text-white">
+                <div class="card-body">
+                    <h5 class="card-title">Balance</h5>
+                    <h3 class="card-text">${{ "%.2f"|format(balance) }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Acciones rápidas -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Acciones Rápidas</h5>
+                    <div class="btn-group">
+                        <a href="{{ url_for('gestionar_transacciones') }}" class="btn btn-primary">Nueva Transacción</a>
+                        <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-info">Gestionar Cuentas</a>
+                        <a href="{{ url_for('gestionar_categorias') }}" class="btn btn-success">Gestionar Categorías</a>
+                        <a href="{{ url_for('exportar_reporte_financiero') }}" class="btn btn-warning">Exportar Reporte</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Saldos de cuentas -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Saldos de Cuentas</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Cuenta</th>
+                                    <th>Tipo</th>
+                                    <th>Saldo Actual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cuenta in cuentas %}
+                                <tr>
+                                    <td>{{ cuenta.nombre }}</td>
+                                    <td>{{ cuenta.tipo }}</td>
+                                    <td>${{ "%.2f"|format(cuenta.saldo_actual) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Últimas transacciones -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Últimas Transacciones</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Cuenta</th>
+                                    <th>Categoría</th>
+                                    <th>Tipo</th>
+                                    <th>Monto</th>
+                                    <th>Descripción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for transaccion in transacciones[:10] %}
+                                <tr>
+                                    <td>{{ transaccion.fecha.strftime('%Y-%m-%d') }}</td>
+                                    <td>{{ transaccion.cuenta.nombre }}</td>
+                                    <td>{{ transaccion.categoria.nombre }}</td>
+                                    <td>
+                                        <span class="badge {% if transaccion.tipo == 'ingreso' %}bg-success{% else %}bg-danger{% endif %}">
+                                            {{ transaccion.tipo }}
+                                        </span>
+                                    </td>
+                                    <td>${{ "%.2f"|format(transaccion.monto) }}</td>
+                                    <td>{{ transaccion.descripcion }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
