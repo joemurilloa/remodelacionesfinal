@@ -194,6 +194,119 @@ def exportar_clientes_a_csv():
         logging.error(f"Error al exportar clientes a CSV: {str(e)}")
         return False, f"Error al exportar clientes: {str(e)}"
 
+def exportar_clientes_a_sheets(cliente_nuevo=None):
+    """Exporta los clientes a una hoja de Google Sheets.
+    
+    Args:
+        cliente_nuevo: Si se proporciona, solo se añadirá este cliente como una nueva fila.
+                      Si es None, se exportarán todos los clientes.
+    """
+    from flask import current_app
+    from models import Cliente
+    
+    try:
+        # Autenticar con Google
+        creds = None
+        if os.path.exists(TOKEN_FILE):
+            creds = Credentials.from_authorized_user_info(
+                json.loads(open(TOKEN_FILE).read()), SCOPES)
+        
+        if not creds or not creds.valid:
+            if creds and creds.expired and creds.refresh_token:
+                creds.refresh(Request())
+            else:
+                flow = InstalledAppFlow.from_client_secrets_file(
+                    CREDENTIALS_FILE, SCOPES)
+                creds = flow.run_local_server(port=0)
+            
+            with open(TOKEN_FILE, 'w') as token:
+                token.write(creds.to_json())
+        
+        # Crear servicios
+        drive_service = build('drive', 'v3', credentials=creds)
+        sheets_service = build('sheets', 'v4', credentials=creds)
+        
+        # Obtener o crear la carpeta principal
+        folder_id = obtener_o_crear_carpeta_backup(drive_service)
+        
+        # Buscar si ya existe una hoja de cálculo
+        query = f"name='clientes' and mimeType='application/vnd.google-apps.spreadsheet' and '{folder_id}' in parents and trashed=false"
+        response = drive_service.files().list(q=query, spaces='drive', fields='files(id, name)').execute()
+        files = response.get('files', [])
+        
+        if files:
+            spreadsheet_id = files[0]['id']
+        else:
+            # Crear nueva hoja de cálculo
+            file_metadata = {
+                'name': 'clientes',
+                'mimeType': 'application/vnd.google-apps.spreadsheet',
+                'parents': [folder_id]
+            }
+            file = drive_service.files().create(body=file_metadata, fields='id').execute()
+            spreadsheet_id = file.get('id')
+            
+            # Configurar encabezados
+            headers = [['ID', 'Nombre', 'RUT', 'Email', 'Teléfono', 'Dirección', 'Fecha de Creación']]
+            sheets_service.spreadsheets().values().update(
+                spreadsheetId=spreadsheet_id,
+                range='A1',
+                valueInputOption='RAW',
+                body={'values': headers}
+            ).execute()
+        
+        # Preparar datos para la hoja
+        values = []
+        
+        if cliente_nuevo:
+            # Si se proporciona un cliente específico, solo añadir ese cliente
+            values.append([
+                cliente_nuevo.id,
+                cliente_nuevo.nombre,
+                cliente_nuevo.rut or '',
+                cliente_nuevo.email or '',
+                cliente_nuevo.telefono or '',
+                cliente_nuevo.direccion or '',
+                cliente_nuevo.fecha_creacion.strftime('%Y-%m-%d %H:%M:%S') if cliente_nuevo.fecha_creacion else ''
+            ])
+        else:
+            # Si no se proporciona un cliente específico, obtener todos los clientes
+            with current_app.app_context():
+                clientes = Cliente.query.all()
+            
+            for cliente in clientes:
+                values.append([
+                    cliente.id,
+                    cliente.nombre,
+                    cliente.rut or '',
+                    cliente.email or '',
+                    cliente.telefono or '',
+                    cliente.direccion or '',
+                    cliente.fecha_creacion.strftime('%Y-%m-%d %H:%M:%S') if cliente.fecha_creacion else ''
+                ])
+        
+        # Obtener la última fila con datos
+        result = sheets_service.spreadsheets().values().get(
+            spreadsheetId=spreadsheet_id,
+            range='A:A'
+        ).execute()
+        last_row = len(result.get('values', []))
+        
+        # Añadir nuevos datos
+        if values:
+            sheets_service.spreadsheets().values().update(
+                spreadsheetId=spreadsheet_id,
+                range=f'A{last_row + 1}',
+                valueInputOption='RAW',
+                body={'values': values}
+            ).execute()
+        
+        logging.info(f"Clientes exportados correctamente a Google Sheets: {spreadsheet_id}")
+        return True, "Clientes exportados correctamente a Google Sheets."
+    except Exception as e:
+        logging.error(f"Error al exportar clientes a Google Sheets: {str(e)}")
+        return False, f"Error al exportar clientes: {str(e)}"
+
 def sincronizar_pdfs_cotizaciones():
     """Sincroniza los PDFs de cotizaciones con Google Drive."""
     try:
@@ -325,8 +438,8 @@ def realizar_backup_completo():
     try:
         resultados = []
         
-        # Exportar clientes a CSV
-        exito, mensaje = exportar_clientes_a_csv()
+        # Exportar todos los clientes a Google Sheets
+        exito, mensaje = exportar_clientes_a_sheets(cliente_nuevo=None)
         resultados.append(mensaje)
         
         # Sincronizar PDFs de cotizaciones

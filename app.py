@@ -49,13 +49,13 @@ def nuevo_cliente():
         db.session.commit()
         flash('Cliente agregado correctamente')
         
-        # Exportar clientes a CSV después de agregar un nuevo cliente
+        # Exportar solo el nuevo cliente a Google Sheets
         try:
-            exito, mensaje = backup_drive.exportar_clientes_a_csv()
+            exito, mensaje = backup_drive.exportar_clientes_a_sheets(cliente_nuevo=nuevo_cliente)
             if not exito:
-                logging.error(f"Error al exportar clientes a CSV: {mensaje}")
+                logging.error(f"Error al exportar cliente a Google Sheets: {mensaje}")
         except Exception as e:
-            logging.error(f"Error al exportar clientes a CSV: {str(e)}")
+            logging.error(f"Error al exportar cliente a Google Sheets: {str(e)}")
         
         return redirect(url_for('listar_clientes'))
     
@@ -75,13 +75,13 @@ def editar_cliente(id):
         db.session.commit()
         flash('Cliente actualizado correctamente')
         
-        # Exportar clientes a CSV después de editar un cliente
+        # Exportar solo el cliente editado a Google Sheets
         try:
-            exito, mensaje = backup_drive.exportar_clientes_a_csv()
+            exito, mensaje = backup_drive.exportar_clientes_a_sheets(cliente_nuevo=cliente)
             if not exito:
-                logging.error(f"Error al exportar clientes a CSV: {mensaje}")
+                logging.error(f"Error al exportar cliente a Google Sheets: {mensaje}")
         except Exception as e:
-            logging.error(f"Error al exportar clientes a CSV: {str(e)}")
+            logging.error(f"Error al exportar cliente a Google Sheets: {str(e)}")
         
         return redirect(url_for('listar_clientes'))
     
@@ -233,6 +233,10 @@ def marcar_factura_pagada(id):
         factura.pagada = True
         factura.fecha_pago = datetime.now()
         db.session.commit()
+        
+        # Regenerar el PDF con el nuevo estado de pago
+        pdf_generator.generar_pdf_factura(factura)
+        
         flash('Factura marcada como pagada correctamente')
     except Exception as e:
         db.session.rollback()

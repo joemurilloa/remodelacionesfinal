@@ -20,7 +20,10 @@ TEMPLATES_DIR = os.path.join(BASE_PATH, 'templates')
 STATIC_DIR = os.path.join(BASE_PATH, 'static')
 
 # Configuración de Google Drive
-SCOPES = ['https://www.googleapis.com/auth/drive.file']
+SCOPES = [
+    'https://www.googleapis.com/auth/drive.file',
+    'https://www.googleapis.com/auth/spreadsheets'
+]
 BACKUP_FOLDER_NAME = 'sistema_cotizaciones_backups'
 COTIZACIONES_FOLDER_NAME = 'cotizaciones'
 FACTURAS_FOLDER_NAME = 'facturas'

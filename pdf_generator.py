@@ -138,11 +138,11 @@ def generar_pdf_cotizacion(cotizacion):
     
     # Add totals
     items_data.append(['', '', '<b>Subtotal:</b>', format_currency(cotizacion.subtotal)])
-    # Using US tax rate (adjust as needed)
-    tax_rate = 0.06  # 6% sales tax (example - adjust for specific state)
+    # Using Chilean tax rate
+    tax_rate = 0.19  # 19% IVA en Chile
     tax_amount = cotizacion.subtotal * tax_rate
     total = cotizacion.subtotal + tax_amount
-    items_data.append(['', '', f'<b>Tax ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
+    items_data.append(['', '', f'<b>IVA ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
     items_data.append(['', '', '<b>TOTAL:</b>', format_currency(total)])
     
     # Create items table
@@ -308,11 +308,11 @@ def generar_pdf_factura(factura):
     
     # Add totals
     items_data.append(['', '', '<b>Subtotal:</b>', format_currency(factura.subtotal)])
-    # Using US tax rate
-    tax_rate = 0.06  # 6% sales tax (example - adjust for specific state)
+    # Using Chilean tax rate
+    tax_rate = 0.19  # 19% IVA en Chile
     tax_amount = factura.subtotal * tax_rate
     total = factura.subtotal + tax_amount
-    items_data.append(['', '', f'<b>Tax ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
+    items_data.append(['', '', f'<b>IVA ({int(tax_rate*100)}%):</b>', format_currency(tax_amount)])
     items_data.append(['', '', '<b>TOTAL:</b>', format_currency(total)])
     
     # Create items table

@@ -53,14 +53,6 @@
                                         <a href="{{ url_for('editar_cliente', id=cliente.id) }}" class="btn btn-outline-primary" title="Editar">
                                             <i class="fas fa-edit"></i>
                                         </a>
-                                        <button type="button" class="btn btn-outline-danger" 
-                                                data-bs-toggle="modal" 
-                                                data-bs-target="#eliminarModal" 
-                                                data-cliente-id="{{ cliente.id }}"
-                                                data-cliente-nombre="{{ cliente.nombre }}"
-                                                title="Eliminar">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
                                         <a href="{{ url_for('nueva_cotizacion') }}?cliente_id={{ cliente.id }}" class="btn btn-outline-success" title="Nueva Cotización">
                                             <i class="fas fa-file-alt"></i>
                                         </a>
@@ -79,27 +71,6 @@
     </div>
 </div>
 
-<!-- Modal de confirmación para eliminar -->
-<div class="modal fade" id="eliminarModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-danger text-white">
-                <h5 class="modal-title">
-                    <i class="fas fa-exclamation-triangle me-1"></i> Confirmar Eliminación
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar al cliente <strong id="nombre-cliente"></strong>?</p>
-                <p class="text-danger"><small>Esta acción no se puede deshacer.</small></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <a href="#" id="btn-confirmar-eliminar" class="btn btn-danger">Eliminar</a>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}
 
 {% block extra_js %}
@@ -115,17 +86,6 @@
                 const contenido = fila.textContent.toLowerCase();
                 fila.style.display = contenido.includes(texto) ? '' : 'none';
             });
-        });
-        
-        // Configurar el modal de eliminación
-        const eliminarModal = document.getElementById('eliminarModal');
-        eliminarModal.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
-            const clienteId = button.getAttribute('data-cliente-id');
-            const clienteNombre = button.getAttribute('data-cliente-nombre');
-            
-            document.getElementById('nombre-cliente').textContent = clienteNombre;
-            document.getElementById('btn-confirmar-eliminar').href = "{{ url_for('eliminar_cliente', id=0) }}".replace('0', clienteId);
         });
     });
 </script>
