@@ -1,0 +1,69 @@
+2025-04-03 23:05:39,780 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-03 23:05:41,793 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:41] "GET / HTTP/1.1" 200 -
+2025-04-03 23:05:41,944 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:41] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-03 23:05:42,163 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:42] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-03 23:05:42,581 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:42] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-03 23:05:44,505 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:44] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-03 23:05:44,575 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:05:44,583 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:05:45,165 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:45] "GET /clientes HTTP/1.1" 200 -
+2025-04-03 23:05:45,218 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:05:45,226 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:05:46,866 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:46] "GET / HTTP/1.1" 200 -
+2025-04-03 23:05:46,920 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:05:46,924 - INFO - 127.0.0.1 - - [03/Apr/2025 23:05:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:06:02,167 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:02] "GET /clientes HTTP/1.1" 200 -
+2025-04-03 23:06:02,221 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:06:02,228 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:06:03,284 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:03] "GET /clientes/nuevo HTTP/1.1" 200 -
+2025-04-03 23:06:03,331 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:06:03,337 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:06:21,534 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:06:21,534 - ERROR - Error al exportar clientes a CSV: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:06:21,535 - ERROR - Error al exportar clientes a CSV: Error al exportar clientes: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:06:21,536 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:21] "[32mPOST /clientes/nuevo HTTP/1.1[0m" 302 -
+2025-04-03 23:06:21,537 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:21] "GET /clientes HTTP/1.1" 200 -
+2025-04-03 23:06:21,582 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:06:21,585 - INFO - 127.0.0.1 - - [03/Apr/2025 23:06:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:07:02,237 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:07:02,237 - ERROR - Error al exportar clientes a CSV: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:07:02,237 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:07:02,237 - ERROR - Error al sincronizar PDFs de cotizaciones: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:07:02,237 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:07:02,237 - ERROR - Error al sincronizar PDFs de facturas: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:07:02,237 - INFO - Backup completo realizado con éxito
+2025-04-03 23:07:02,239 - INFO - 127.0.0.1 - - [03/Apr/2025 23:07:02] "[32mGET /backup HTTP/1.1[0m" 302 -
+2025-04-03 23:07:02,250 - INFO - 127.0.0.1 - - [03/Apr/2025 23:07:02] "GET / HTTP/1.1" 200 -
+2025-04-03 23:07:02,291 - INFO - 127.0.0.1 - - [03/Apr/2025 23:07:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:07:02,301 - INFO - 127.0.0.1 - - [03/Apr/2025 23:07:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:15:28,651 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:28] "GET / HTTP/1.1" 200 -
+2025-04-03 23:15:28,720 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:15:28,722 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:15:30,198 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:30] "GET /clientes HTTP/1.1" 200 -
+2025-04-03 23:15:30,255 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:15:30,264 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:15:34,219 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:34] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-03 23:15:34,280 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:15:34,286 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:15:37,016 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:37] "GET /cotizaciones/nueva HTTP/1.1" 200 -
+2025-04-03 23:15:37,067 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:37] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:15:37,075 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:37] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:15:45,487 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:45,487 - ERROR - Error al sincronizar PDFs de cotizaciones: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:45,487 - ERROR - Error al sincronizar cotizaciones con Drive: Error al sincronizar cotizaciones: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:45,490 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:45] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-03 23:15:45,526 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:45] "GET /cotizaciones/ver/13 HTTP/1.1" 200 -
+2025-04-03 23:15:45,564 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:15:45,567 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-03 23:15:45,609 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:45] "[33mGET /cotizaciones/pdf/13 HTTP/1.1[0m" 404 -
+2025-04-03 23:15:47,562 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:47,562 - ERROR - Error al exportar clientes a CSV: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:47,562 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:47,562 - ERROR - Error al sincronizar PDFs de cotizaciones: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:47,562 - ERROR - Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:47,562 - ERROR - Error al sincronizar PDFs de facturas: Archivo de credenciales credentials.json no encontrado
+2025-04-03 23:15:47,562 - INFO - Backup completo realizado con éxito
+2025-04-03 23:15:47,562 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:47] "[32mGET /backup HTTP/1.1[0m" 302 -
+2025-04-03 23:15:47,578 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:47] "GET / HTTP/1.1" 200 -
+2025-04-03 23:15:47,636 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-03 23:15:47,644 - INFO - 127.0.0.1 - - [03/Apr/2025 23:15:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -

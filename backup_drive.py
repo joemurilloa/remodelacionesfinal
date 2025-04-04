@@ -9,12 +9,13 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 import logging
 import json
+from config import *
 
 # Configurar logging
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='backup_log.txt'
+    filename=os.path.join(BASE_PATH, 'backup_log.txt')
 )
 
 # Configuración de Google Drive API
