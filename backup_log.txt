@@ -2840,3 +2840,244 @@
 2025-04-04 15:42:09,689 - INFO - 127.0.0.1 - - [04/Apr/2025 15:42:09] "GET /clientes HTTP/1.1" 200 -
 2025-04-04 15:42:09,742 - INFO - 127.0.0.1 - - [04/Apr/2025 15:42:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 2025-04-04 15:42:09,742 - INFO - 127.0.0.1 - - [04/Apr/2025 15:42:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:04:25,460 - INFO -  * Restarting with stat
+2025-04-04 20:04:28,007 - WARNING -  * Debugger is active!
+2025-04-04 20:04:28,011 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:04:28,098 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:08:32,322 - INFO -  * Restarting with stat
+2025-04-04 20:08:38,610 - WARNING -  * Debugger is active!
+2025-04-04 20:08:38,617 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:08:38,825 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:08:39,011 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:39] "GET / HTTP/1.1" 200 -
+2025-04-04 20:08:39,180 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:39] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-04 20:08:39,253 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:39] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-04 20:08:39,778 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-04 20:08:42,026 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:42] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:08:42,105 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:08:42,117 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:08:45,200 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:45] "GET /clientes/nuevo HTTP/1.1" 200 -
+2025-04-04 20:08:45,229 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:08:45,246 - INFO - 127.0.0.1 - - [04/Apr/2025 20:08:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:09:02,923 - INFO - "GET /?state=aMYFSdpjZdbMhzSTvdVAH9VwCZz6zY&code=4/0Ab_5qlnGnlZL8BUGIbo8k6XXOFuYBNob-JiG8lRIJKVRWP3r7xrIv4-1iBwL0ycA7JSL9g&scope=https://www.googleapis.com/auth/drive.file%20https://www.googleapis.com/auth/spreadsheets HTTP/1.1" 200 65
+2025-04-04 20:09:03,259 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:09:03,266 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:09:04,169 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:09:06,209 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 20:09:06,212 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:06] "[32mPOST /clientes/nuevo HTTP/1.1[0m" 302 -
+2025-04-04 20:09:06,223 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:06] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:09:06,246 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:09:06,258 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:09:20,409 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:20] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:09:20,434 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:09:20,442 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:09:22,777 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:22] "GET /cotizaciones/nueva HTTP/1.1" 200 -
+2025-04-04 20:09:22,809 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:22] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:09:22,810 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:22] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:09:34,998 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:09:35,811 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:09:36,003 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 20:09:39,619 - INFO - Sincronización de cotizaciones completada: 2 nuevos, 0 actualizados.
+2025-04-04 20:09:39,623 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:39] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-04 20:09:39,654 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:39] "GET /cotizaciones/ver/1 HTTP/1.1" 200 -
+2025-04-04 20:09:39,696 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:09:39,696 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:09:39,739 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:39] "GET /cotizaciones/pdf/1 HTTP/1.1" 200 -
+2025-04-04 20:09:46,097 - INFO - 127.0.0.1 - - [04/Apr/2025 20:09:46] "GET /cotizaciones/pdf/1 HTTP/1.1" 200 -
+2025-04-04 20:09:56,320 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:09:57,209 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:09:57,409 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 20:10:00,450 - INFO - Sincronización de facturas completada: 2 nuevas, 0 actualizadas.
+2025-04-04 20:10:00,454 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:00] "[32mGET /cotizaciones/a-factura/1 HTTP/1.1[0m" 302 -
+2025-04-04 20:10:00,527 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:00] "GET /facturas/ver/1 HTTP/1.1" 200 -
+2025-04-04 20:10:00,609 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:10:00,609 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:10:00,643 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:00] "GET /facturas/pdf/1 HTTP/1.1" 200 -
+2025-04-04 20:10:34,606 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:10:35,380 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:10:35,621 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 20:10:39,120 - INFO - Sincronización de facturas completada: 0 nuevas, 2 actualizadas.
+2025-04-04 20:10:39,120 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:39] "[32mPOST /facturas/marcar-pagada/1 HTTP/1.1[0m" 302 -
+2025-04-04 20:10:39,151 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:39] "GET /facturas/ver/1 HTTP/1.1" 200 -
+2025-04-04 20:10:39,217 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:10:39,227 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:10:39,243 - INFO - 127.0.0.1 - - [04/Apr/2025 20:10:39] "GET /facturas/pdf/1 HTTP/1.1" 200 -
+2025-04-04 20:22:49,281 - INFO - 127.0.0.1 - - [04/Apr/2025 20:22:49] "GET /facturas HTTP/1.1" 200 -
+2025-04-04 20:22:49,350 - INFO - 127.0.0.1 - - [04/Apr/2025 20:22:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:22:49,375 - INFO - 127.0.0.1 - - [04/Apr/2025 20:22:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:22:50,149 - INFO - 127.0.0.1 - - [04/Apr/2025 20:22:50] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:22:50,201 - INFO - 127.0.0.1 - - [04/Apr/2025 20:22:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:22:50,208 - INFO - 127.0.0.1 - - [04/Apr/2025 20:22:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:40:17,054 - INFO -  * Restarting with stat
+2025-04-04 20:40:19,507 - WARNING -  * Debugger is active!
+2025-04-04 20:40:19,514 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:40:19,589 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:40:23,710 - INFO - 127.0.0.1 - - [04/Apr/2025 20:40:23] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:40:23,839 - INFO - 127.0.0.1 - - [04/Apr/2025 20:40:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:40:23,843 - INFO - 127.0.0.1 - - [04/Apr/2025 20:40:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:44:52,735 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:52] "GET /cotizaciones/nueva HTTP/1.1" 200 -
+2025-04-04 20:44:52,763 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:44:52,767 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:44:57,200 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:57] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:44:57,250 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:57] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:44:57,255 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:57] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:44:58,219 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:58] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:44:58,254 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:44:58,264 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:44:58,967 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:58] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:44:59,024 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:44:59,030 - INFO - 127.0.0.1 - - [04/Apr/2025 20:44:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:45:03,577 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:03] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:45:03,632 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:45:03,633 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:45:04,731 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:04] "GET /clientes/nuevo HTTP/1.1" 200 -
+2025-04-04 20:45:04,787 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:04] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:45:04,801 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:04] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:45:14,320 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:45:14,354 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:45:15,242 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:45:17,086 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 20:45:17,086 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "[32mPOST /clientes/nuevo HTTP/1.1[0m" 302 -
+2025-04-04 20:45:17,113 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:45:17,159 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:45:17,166 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:45:17,631 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:45:17,699 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:45:17,706 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:17] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:45:19,826 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:19] "GET /cotizaciones/nueva HTTP/1.1" 200 -
+2025-04-04 20:45:19,861 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:45:19,861 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:45:27,817 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:27] "[35m[1mPOST /cotizaciones/nueva HTTP/1.1[0m" 500 -
+2025-04-04 20:45:27,864 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:27] "GET /cotizaciones/nueva?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-04-04 20:45:27,870 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:27] "GET /cotizaciones/nueva?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-04-04 20:45:27,912 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:27] "GET /cotizaciones/nueva?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1" 200 -
+2025-04-04 20:45:27,919 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:27] "GET /cotizaciones/nueva?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-04 20:45:27,943 - INFO - 127.0.0.1 - - [04/Apr/2025 20:45:27] "GET /cotizaciones/nueva?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-04-04 20:46:07,586 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\pdf_generator.py', reloading
+2025-04-04 20:46:07,855 - INFO -  * Restarting with stat
+2025-04-04 20:46:10,904 - WARNING -  * Debugger is active!
+2025-04-04 20:46:10,910 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:46:11,009 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:46:13,228 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\app.py', reloading
+2025-04-04 20:46:13,403 - INFO -  * Restarting with stat
+2025-04-04 20:46:16,233 - WARNING -  * Debugger is active!
+2025-04-04 20:46:16,238 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:46:16,327 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:46:26,239 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\backup_drive.py', reloading
+2025-04-04 20:46:26,433 - INFO -  * Restarting with stat
+2025-04-04 20:46:29,730 - WARNING -  * Debugger is active!
+2025-04-04 20:46:29,738 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:46:29,905 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:48:40,142 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\pdf_generator.py', reloading
+2025-04-04 20:48:40,305 - INFO -  * Restarting with stat
+2025-04-04 20:48:42,841 - WARNING -  * Debugger is active!
+2025-04-04 20:48:42,841 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:48:42,941 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:50:04,653 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\pdf_generator.py', reloading
+2025-04-04 20:50:04,829 - INFO -  * Restarting with stat
+2025-04-04 20:50:07,210 - WARNING -  * Debugger is active!
+2025-04-04 20:50:07,220 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:50:07,408 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:50:11,907 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\pdf_generator.py', reloading
+2025-04-04 20:50:12,123 - INFO -  * Restarting with stat
+2025-04-04 20:50:14,760 - WARNING -  * Debugger is active!
+2025-04-04 20:50:14,765 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:50:14,850 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:50:23,694 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Documents\\remodelacionesfinal\\app.py', reloading
+2025-04-04 20:50:23,914 - INFO -  * Restarting with stat
+2025-04-04 20:50:26,097 - WARNING -  * Debugger is active!
+2025-04-04 20:50:26,103 - INFO -  * Debugger PIN: 560-235-048
+2025-04-04 20:50:26,182 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 20:50:50,497 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:50:51,288 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:50:51,418 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 20:50:52,935 - INFO - PDF de cotización subido correctamente: cotizacion_3_20250404_205049.pdf
+2025-04-04 20:50:52,939 - INFO - 127.0.0.1 - - [04/Apr/2025 20:50:52] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-04 20:51:00,646 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:51:01,484 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:51:01,614 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 20:51:02,890 - INFO - PDF de cotización subido correctamente: cotizacion_4_20250404_205059.pdf
+2025-04-04 20:51:02,895 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:02] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-04 20:51:02,940 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:02] "GET /cotizaciones/ver/4 HTTP/1.1" 200 -
+2025-04-04 20:51:03,091 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:03] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:51:03,091 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:03] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:51:03,104 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:03] "GET /cotizaciones/pdf/4 HTTP/1.1" 200 -
+2025-04-04 20:51:06,969 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:06] "GET /cotizaciones/pdf/4 HTTP/1.1" 200 -
+2025-04-04 20:51:11,950 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:51:12,741 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:51:12,956 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 20:51:14,359 - INFO - PDF de factura subido correctamente: factura_2_20250404_205111.pdf
+2025-04-04 20:51:14,364 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:14] "[32mGET /cotizaciones/a-factura/4 HTTP/1.1[0m" 302 -
+2025-04-04 20:51:14,407 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:14] "GET /facturas/ver/2 HTTP/1.1" 200 -
+2025-04-04 20:51:14,449 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:51:14,449 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:51:14,495 - INFO - 127.0.0.1 - - [04/Apr/2025 20:51:14] "GET /facturas/pdf/2 HTTP/1.1" 200 -
+2025-04-04 20:56:23,532 - INFO - 127.0.0.1 - - [04/Apr/2025 20:56:23] "GET /facturas/pdf/2 HTTP/1.1" 200 -
+2025-04-04 20:56:58,573 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:56:59,452 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:56:59,575 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 20:57:01,305 - INFO - PDF de factura subido correctamente: factura_2_20250404_205657.pdf
+2025-04-04 20:57:01,310 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:01] "[32mPOST /facturas/marcar-pagada/2 HTTP/1.1[0m" 302 -
+2025-04-04 20:57:01,335 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:01] "GET /facturas/ver/2 HTTP/1.1" 200 -
+2025-04-04 20:57:01,392 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:57:01,429 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:01] "GET /facturas/pdf/2 HTTP/1.1" 200 -
+2025-04-04 20:57:01,447 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:01] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:57:36,605 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:36] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 20:57:36,657 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:57:36,664 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:57:42,798 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:42] "GET / HTTP/1.1" 200 -
+2025-04-04 20:57:42,834 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:57:42,839 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:57:48,778 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:48] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:57:48,822 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:57:48,825 - INFO - 127.0.0.1 - - [04/Apr/2025 20:57:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:58:16,439 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:16] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:58:16,476 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:16] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:58:16,484 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:16] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:58:49,586 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:49] "GET /clientes/nuevo HTTP/1.1" 200 -
+2025-04-04 20:58:49,630 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:58:49,630 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:58:56,087 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:58:56,094 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:58:56,960 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:58:58,803 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 20:58:58,803 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:58] "[32mPOST /clientes/nuevo HTTP/1.1[0m" 302 -
+2025-04-04 20:58:58,831 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:58] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:58:58,880 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:58:58,883 - INFO - 127.0.0.1 - - [04/Apr/2025 20:58:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:01,999 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:01] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 20:59:02,042 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:59:02,046 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:08,371 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:08] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 20:59:08,415 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:59:08,420 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:10,119 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:10] "GET /cotizaciones/nueva?cliente_id=3 HTTP/1.1" 200 -
+2025-04-04 20:59:10,169 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:59:10,182 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:16,899 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:59:17,699 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:59:17,877 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 20:59:19,265 - INFO - PDF de cotización subido correctamente: cotizacion_5_20250404_205916.pdf
+2025-04-04 20:59:19,269 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:19] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-04 20:59:19,290 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:19] "GET /cotizaciones/ver/5 HTTP/1.1" 200 -
+2025-04-04 20:59:19,344 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:59:19,353 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:19,397 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:19] "GET /cotizaciones/pdf/5 HTTP/1.1" 200 -
+2025-04-04 20:59:24,260 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:24] "GET /cotizaciones/pdf/5 HTTP/1.1" 200 -
+2025-04-04 20:59:37,679 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:59:38,460 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:59:38,581 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 20:59:40,142 - INFO - PDF de factura subido correctamente: factura_3_20250404_205936.pdf
+2025-04-04 20:59:40,145 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:40] "[32mGET /cotizaciones/a-factura/5 HTTP/1.1[0m" 302 -
+2025-04-04 20:59:40,158 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:40] "GET /facturas/ver/3 HTTP/1.1" 200 -
+2025-04-04 20:59:40,191 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:59:40,207 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:40,228 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:40] "GET /facturas/pdf/3 HTTP/1.1" 200 -
+2025-04-04 20:59:42,934 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 20:59:43,738 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 20:59:43,872 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 20:59:45,228 - INFO - PDF de factura subido correctamente: factura_3_20250404_205942.pdf
+2025-04-04 20:59:45,231 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "[32mPOST /facturas/marcar-pagada/3 HTTP/1.1[0m" 302 -
+2025-04-04 20:59:45,244 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "GET /facturas/ver/3 HTTP/1.1" 200 -
+2025-04-04 20:59:45,299 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 20:59:45,303 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 20:59:45,329 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "GET /facturas/pdf/3 HTTP/1.1" 200 -

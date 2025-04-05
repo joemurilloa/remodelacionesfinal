@@ -7,6 +7,7 @@ import pdf_generator
 import backup_drive
 import logging
 from werkzeug.utils import secure_filename
+import glob
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'clave_secreta_para_desarrollo'
@@ -153,18 +154,36 @@ def nueva_cotizacion():
 @app.route('/cotizaciones/ver/<int:id>')
 def ver_cotizacion(id):
     cotizacion = Cotizacion.query.get_or_404(id)
-    pdf_filename = f"cotizacion_{cotizacion.id}.pdf"
+    
+    # Buscar el PDF más reciente para esta cotización
+    pdf_dir = os.path.join(app.config['UPLOAD_FOLDER'])
+    pdf_pattern = f"cotizacion_{id}_*.pdf"
+    pdf_files = glob.glob(os.path.join(pdf_dir, pdf_pattern))
+    
+    if pdf_files:
+        # Usar el PDF más reciente
+        pdf_filename = os.path.basename(max(pdf_files, key=os.path.getctime))
+    else:
+        # Si no existe, generarlo
+        pdf_filename = pdf_generator.generar_pdf_cotizacion(cotizacion)
+    
     return render_template('cotizaciones/ver.html', cotizacion=cotizacion, pdf_filename=pdf_filename)
 
 @app.route('/cotizaciones/pdf/<int:id>')
 def pdf_cotizacion(id):
     cotizacion = Cotizacion.query.get_or_404(id)
-    pdf_filename = f"cotizacion_{cotizacion.id}.pdf"
     
-    # Si el PDF no existe, generarlo
-    pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
-    if not os.path.exists(pdf_path):
-        pdf_generator.generar_pdf_cotizacion(cotizacion)
+    # Buscar el PDF más reciente para esta cotización
+    pdf_dir = os.path.join(app.config['UPLOAD_FOLDER'])
+    pdf_pattern = f"cotizacion_{id}_*.pdf"
+    pdf_files = glob.glob(os.path.join(pdf_dir, pdf_pattern))
+    
+    if pdf_files:
+        # Usar el PDF más reciente
+        pdf_filename = os.path.basename(max(pdf_files, key=os.path.getctime))
+    else:
+        # Si no existe, generarlo
+        pdf_filename = pdf_generator.generar_pdf_cotizacion(cotizacion)
     
     return send_from_directory(app.config['UPLOAD_FOLDER'], pdf_filename)
 
@@ -226,18 +245,36 @@ def listar_facturas():
 @app.route('/facturas/ver/<int:id>')
 def ver_factura(id):
     factura = Factura.query.get_or_404(id)
-    pdf_filename = f"factura_{factura.id}.pdf"
+    
+    # Buscar el PDF más reciente para esta factura
+    pdf_dir = os.path.join(app.config['UPLOAD_FOLDER'])
+    pdf_pattern = f"factura_{id}_*.pdf"
+    pdf_files = glob.glob(os.path.join(pdf_dir, pdf_pattern))
+    
+    if pdf_files:
+        # Usar el PDF más reciente
+        pdf_filename = os.path.basename(max(pdf_files, key=os.path.getctime))
+    else:
+        # Si no existe, generarlo
+        pdf_filename = pdf_generator.generar_pdf_factura(factura)
+    
     return render_template('facturas/ver.html', factura=factura, pdf_filename=pdf_filename)
 
 @app.route('/facturas/pdf/<int:id>')
 def pdf_factura(id):
     factura = Factura.query.get_or_404(id)
-    pdf_filename = f"factura_{factura.id}.pdf"
     
-    # Si el PDF no existe, generarlo
-    pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], pdf_filename)
-    if not os.path.exists(pdf_path):
-        pdf_generator.generar_pdf_factura(factura)
+    # Buscar el PDF más reciente para esta factura
+    pdf_dir = os.path.join(app.config['UPLOAD_FOLDER'])
+    pdf_pattern = f"factura_{id}_*.pdf"
+    pdf_files = glob.glob(os.path.join(pdf_dir, pdf_pattern))
+    
+    if pdf_files:
+        # Usar el PDF más reciente
+        pdf_filename = os.path.basename(max(pdf_files, key=os.path.getctime))
+    else:
+        # Si no existe, generarlo
+        pdf_filename = pdf_generator.generar_pdf_factura(factura)
     
     return send_from_directory(app.config['UPLOAD_FOLDER'], pdf_filename)
 

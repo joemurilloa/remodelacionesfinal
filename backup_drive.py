@@ -686,6 +686,74 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
         logging.error(f"Error al exportar reporte financiero: {str(e)}")
         return False, str(e)
 
+def subir_pdf_cotizacion(pdf_path):
+    """Sube un PDF de cotización específico a Google Drive."""
+    try:
+        # Autenticar con Google Drive
+        service = autenticar_drive()
+        
+        # Obtener la carpeta principal
+        main_folder_id = obtener_o_crear_carpeta_backup(service)
+        
+        # Obtener o crear la subcarpeta de cotizaciones
+        cotizaciones_folder_id = obtener_o_crear_subcarpeta(service, COTIZACIONES_FOLDER_NAME, main_folder_id)
+        
+        # Preparar el archivo para subir
+        file_metadata = {
+            'name': os.path.basename(pdf_path),
+            'parents': [cotizaciones_folder_id]
+        }
+        
+        media = MediaFileUpload(pdf_path, mimetype='application/pdf', resumable=True)
+        
+        # Subir el archivo
+        file = service.files().create(
+            body=file_metadata,
+            media_body=media,
+            fields='id'
+        ).execute()
+        
+        mensaje = f"PDF de cotización subido correctamente: {os.path.basename(pdf_path)}"
+        logging.info(mensaje)
+        return True, mensaje
+    except Exception as e:
+        logging.error(f"Error al subir PDF de cotización: {str(e)}")
+        return False, f"Error al subir PDF de cotización: {str(e)}"
+
+def subir_pdf_factura(pdf_path):
+    """Sube un PDF de factura específico a Google Drive."""
+    try:
+        # Autenticar con Google Drive
+        service = autenticar_drive()
+        
+        # Obtener la carpeta principal
+        main_folder_id = obtener_o_crear_carpeta_backup(service)
+        
+        # Obtener o crear la subcarpeta de facturas
+        facturas_folder_id = obtener_o_crear_subcarpeta(service, FACTURAS_FOLDER_NAME, main_folder_id)
+        
+        # Preparar el archivo para subir
+        file_metadata = {
+            'name': os.path.basename(pdf_path),
+            'parents': [facturas_folder_id]
+        }
+        
+        media = MediaFileUpload(pdf_path, mimetype='application/pdf', resumable=True)
+        
+        # Subir el archivo
+        file = service.files().create(
+            body=file_metadata,
+            media_body=media,
+            fields='id'
+        ).execute()
+        
+        mensaje = f"PDF de factura subido correctamente: {os.path.basename(pdf_path)}"
+        logging.info(mensaje)
+        return True, mensaje
+    except Exception as e:
+        logging.error(f"Error al subir PDF de factura: {str(e)}")
+        return False, f"Error al subir PDF de factura: {str(e)}"
+
 def main():
     """Función principal para ejecutar el backup."""
     try:

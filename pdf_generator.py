@@ -4,8 +4,9 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, Tabl
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 import os
-from datetime import datetime
+import datetime
 import locale
+import backup_drive
 
 # Configure locale for US format
 try:
@@ -21,8 +22,11 @@ def generar_pdf_cotizacion(cotizacion):
     pdf_dir = os.path.join('static', 'pdfs')
     os.makedirs(pdf_dir, exist_ok=True)
     
+    # Generar número único basado en fecha y hora
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = os.path.join(pdf_dir, f"cotizacion_{cotizacion.id}_{timestamp}.pdf")
+    
     # Configure the document
-    filename = os.path.join(pdf_dir, f"cotizacion_{cotizacion.id}.pdf")
     doc = SimpleDocTemplate(filename, pagesize=letter)
     
     # Container for PDF elements
@@ -188,26 +192,28 @@ def generar_pdf_cotizacion(cotizacion):
     # Generate PDF
     doc.build(elements)
     
-    # Sync PDFs with Google Drive
+    # Subir solo este PDF a Google Drive
     try:
         import logging
-        import backup_drive
-        success, message = backup_drive.sincronizar_pdfs_cotizaciones()
+        success, message = backup_drive.subir_pdf_cotizacion(filename)
         if not success:
-            logging.error(f"Error syncing quotes with Drive: {message}")
+            logging.error(f"Error al subir cotización a Drive: {message}")
     except Exception as e:
         import logging
-        logging.error(f"Error syncing quotes with Drive: {str(e)}")
+        logging.error(f"Error al subir cotización a Drive: {str(e)}")
     
-    return f"cotizacion_{cotizacion.id}.pdf"
+    return os.path.basename(filename)
 
 def generar_pdf_factura(factura):
     # Create directory for PDFs if it doesn't exist
     pdf_dir = os.path.join('static', 'pdfs')
     os.makedirs(pdf_dir, exist_ok=True)
     
+    # Generar número único basado en fecha y hora
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = os.path.join(pdf_dir, f"factura_{factura.id}_{timestamp}.pdf")
+    
     # Configure the document
-    filename = os.path.join(pdf_dir, f"factura_{factura.id}.pdf")
     doc = SimpleDocTemplate(filename, pagesize=letter)
     
     # Container for PDF elements
@@ -389,15 +395,14 @@ def generar_pdf_factura(factura):
     # Generate PDF
     doc.build(elements)
     
-    # Sincronizar PDFs de facturas con Google Drive
+    # Subir solo este PDF a Google Drive
     try:
         import logging
-        import backup_drive
-        success, message = backup_drive.sincronizar_pdfs_facturas()
+        success, message = backup_drive.subir_pdf_factura(filename)
         if not success:
-            logging.error(f"Error al sincronizar facturas con Drive: {message}")
+            logging.error(f"Error al subir factura a Drive: {message}")
     except Exception as e:
         import logging
-        logging.error(f"Error al sincronizar facturas con Drive: {str(e)}")
+        logging.error(f"Error al subir factura a Drive: {str(e)}")
     
-    return f"factura_{factura.id}.pdf"
+    return os.path.basename(filename)
