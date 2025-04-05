@@ -1,32 +1,115 @@
 {% extends "base.html" %}
 
+{% block title %}Dashboard de Cashflow{% endblock %}
+
+{% block extra_css %}
+<style>
+    .trend-up {
+        color: #28a745;
+    }
+    .trend-down {
+        color: #dc3545;
+    }
+    .card-dashboard {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .card-dashboard:hover {
+        transform: translateY(-5px);
+    }
+    .stats-card {
+        padding: 20px;
+        text-align: center;
+    }
+    .stats-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+    .stats-number {
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    .action-button {
+        border-radius: 8px;
+        padding: 12px 15px;
+        margin: 5px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    .action-button:hover {
+        transform: scale(1.05);
+    }
+    .chart-container {
+        position: relative;
+        height: 300px;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 <div class="container mt-4">
-    <h1 class="mb-4">Dashboard de Cashflow</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="fas fa-chart-line me-2"></i>Dashboard de Cashflow</h1>
+        <div>
+            <a href="{{ url_for('exportar_reporte_financiero') }}" class="btn btn-outline-primary">
+                <i class="fas fa-file-export me-1"></i> Exportar Reporte
+            </a>
+        </div>
+    </div>
     
     <!-- Resumen financiero -->
     <div class="row mb-4">
         <div class="col-md-4">
-            <div class="card bg-success text-white">
-                <div class="card-body">
+            <div class="card card-dashboard bg-success text-white">
+                <div class="card-body stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-arrow-circle-up"></i>
+                    </div>
                     <h5 class="card-title">Total Ingresos</h5>
-                    <h3 class="card-text">${{ "%.2f"|format(total_ingresos) }}</h3>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h3 class="stats-number mb-0">${{ "{:,.2f}".format(total_ingresos) }}</h3>
+                        <span class="ms-2 trend-indicator">
+                            <!-- Indicador de tendencia -->
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card bg-danger text-white">
-                <div class="card-body">
+            <div class="card card-dashboard bg-danger text-white">
+                <div class="card-body stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-arrow-circle-down"></i>
+                    </div>
                     <h5 class="card-title">Total Gastos</h5>
-                    <h3 class="card-text">${{ "%.2f"|format(total_gastos) }}</h3>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h3 class="stats-number mb-0">${{ "{:,.2f}".format(total_gastos) }}</h3>
+                        <span class="ms-2 trend-indicator">
+                            <!-- Indicador de tendencia -->
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="card {% if balance >= 0 %}bg-primary{% else %}bg-warning{% endif %} text-white">
-                <div class="card-body">
+            <div class="card card-dashboard {% if balance >= 0 %}bg-primary{% else %}bg-warning{% endif %} text-white">
+                <div class="card-body stats-card">
+                    <div class="stats-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
                     <h5 class="card-title">Balance</h5>
-                    <h3 class="card-text">${{ "%.2f"|format(balance) }}</h3>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <h3 class="stats-number mb-0">${{ "{:,.2f}".format(balance) }}</h3>
+                        <span class="ms-2 trend-indicator">
+                            {% if balance >= 0 %}
+                                <i class="fas fa-arrow-up trend-up"></i>
+                            {% else %}
+                                <i class="fas fa-arrow-down trend-down"></i>
+                            {% endif %}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,14 +118,50 @@
     <!-- Acciones rápidas -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card card-dashboard">
                 <div class="card-body">
-                    <h5 class="card-title">Acciones Rápidas</h5>
-                    <div class="btn-group">
-                        <a href="{{ url_for('gestionar_transacciones') }}" class="btn btn-primary">Nueva Transacción</a>
-                        <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-info">Gestionar Cuentas</a>
-                        <a href="{{ url_for('gestionar_categorias') }}" class="btn btn-success">Gestionar Categorías</a>
-                        <a href="{{ url_for('exportar_reporte_financiero') }}" class="btn btn-warning">Exportar Reporte</a>
+                    <h5 class="card-title mb-3"><i class="fas fa-bolt me-2"></i>Acciones Rápidas</h5>
+                    <div class="d-flex flex-wrap justify-content-center">
+                        <a href="{{ url_for('gestionar_transacciones') }}" class="btn btn-primary action-button">
+                            <i class="fas fa-plus-circle me-2"></i> Nueva Transacción
+                        </a>
+                        <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-info action-button text-white">
+                            <i class="fas fa-university me-2"></i> Gestionar Cuentas
+                        </a>
+                        <a href="{{ url_for('gestionar_categorias') }}" class="btn btn-success action-button">
+                            <i class="fas fa-tags me-2"></i> Gestionar Categorías
+                        </a>
+                        <a href="{{ url_for('exportar_reporte_financiero') }}" class="btn btn-warning action-button text-dark">
+                            <i class="fas fa-chart-pie me-2"></i> Exportar Reporte
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Gráficos financieros -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card card-dashboard">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0"><i class="fas fa-chart-pie me-2"></i>Distribución de Gastos</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="gastosPorCategoria"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-dashboard">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0"><i class="fas fa-chart-bar me-2"></i>Ingresos vs Gastos</h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="ingresosVsGastos"></canvas>
                     </div>
                 </div>
             </div>
@@ -52,26 +171,37 @@
     <!-- Saldos de cuentas -->
     <div class="row mb-4">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Saldos de Cuentas</h5>
+            <div class="card card-dashboard">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0"><i class="fas fa-university me-2"></i>Saldos de Cuentas</h5>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
+                        <table class="table table-hover">
+                            <thead class="table-light">
                                 <tr>
                                     <th>Cuenta</th>
                                     <th>Tipo</th>
-                                    <th>Saldo Actual</th>
+                                    <th class="text-end">Saldo Actual</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for cuenta in cuentas %}
                                 <tr>
-                                    <td>{{ cuenta.nombre }}</td>
-                                    <td>{{ cuenta.tipo }}</td>
-                                    <td>${{ "%.2f"|format(cuenta.saldo_actual) }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2">
+                                                <i class="fas {% if cuenta.tipo == 'banco' %}fa-university{% else %}fa-money-bill-alt{% endif %}"></i>
+                                            </span>
+                                            {{ cuenta.nombre }}
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if cuenta.tipo == 'banco' %}bg-primary{% else %}bg-info{% endif %}">
+                                            {{ cuenta.tipo }}
+                                        </span>
+                                    </td>
+                                    <td class="text-end fw-bold">${{ "{:,.2f}".format(cuenta.saldo_actual) }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -85,36 +215,54 @@
     <!-- Últimas transacciones -->
     <div class="row">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">Últimas Transacciones</h5>
+            <div class="card card-dashboard">
+                <div class="card-header bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0"><i class="fas fa-history me-2"></i>Últimas Transacciones</h5>
+                        <a href="{{ url_for('gestionar_transacciones') }}" class="btn btn-sm btn-outline-primary">
+                            Ver todas
+                        </a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
+                        <table class="table table-hover">
+                            <thead class="table-light">
                                 <tr>
                                     <th>Fecha</th>
                                     <th>Cuenta</th>
                                     <th>Categoría</th>
                                     <th>Tipo</th>
-                                    <th>Monto</th>
+                                    <th class="text-end">Monto</th>
                                     <th>Descripción</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for transaccion in transacciones[:10] %}
+                                {% for transaccion in transacciones[:5] %}
                                 <tr>
                                     <td>{{ transaccion.fecha.strftime('%Y-%m-%d') }}</td>
-                                    <td>{{ transaccion.cuenta.nombre }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <span class="me-2">
+                                                <i class="fas {% if transaccion.cuenta.tipo == 'banco' %}fa-university{% else %}fa-money-bill-alt{% endif %}"></i>
+                                            </span>
+                                            {{ transaccion.cuenta.nombre }}
+                                        </div>
+                                    </td>
                                     <td>{{ transaccion.categoria.nombre }}</td>
                                     <td>
                                         <span class="badge {% if transaccion.tipo == 'ingreso' %}bg-success{% else %}bg-danger{% endif %}">
                                             {{ transaccion.tipo }}
                                         </span>
                                     </td>
-                                    <td>${{ "%.2f"|format(transaccion.monto) }}</td>
+                                    <td class="text-end fw-bold">${{ "{:,.2f}".format(transaccion.monto) }}</td>
                                     <td>{{ transaccion.descripcion }}</td>
+                                    <td>
+                                        <a href="{{ url_for('eliminar_transaccion', id=transaccion.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta transacción?');">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -125,4 +273,229 @@
         </div>
     </div>
 </div>
-{% endblock %} 
+
+<!-- Datos para gráficos -->
+<script id="datosGraficos" type="application/json">
+{
+    "categorias": [
+        {% for categoria in categorias %}
+            {
+                "id": {{ categoria.id }},
+                "nombre": "{{ categoria.nombre }}",
+                "tipo": "{{ categoria.tipo }}"
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ],
+    "transacciones": [
+        {% for transaccion in transacciones %}
+            {
+                "id": {{ transaccion.id }},
+                "fecha": "{{ transaccion.fecha.strftime('%Y-%m-%d') }}",
+                "monto": {{ transaccion.monto }},
+                "tipo": "{{ transaccion.tipo }}",
+                "categoria_id": {{ transaccion.categoria_id }}
+            }{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+}
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Obtener datos para los gráficos desde el elemento script JSON
+        let datos = { categorias: [], transacciones: [] };
+        try {
+            const datosJSON = document.getElementById('datosGraficos').textContent;
+            datos = JSON.parse(datosJSON);
+            console.log("Datos cargados correctamente:", datos);
+        } catch (error) {
+            console.error("Error al parsear datos JSON para gráficos:", error);
+        }
+        
+        // Colores para los gráficos
+        const colores = [
+            'rgba(255, 99, 132, 0.8)',
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(255, 206, 86, 0.8)',
+            'rgba(75, 192, 192, 0.8)',
+            'rgba(153, 102, 255, 0.8)',
+            'rgba(255, 159, 64, 0.8)',
+            'rgba(199, 199, 199, 0.8)',
+            'rgba(83, 102, 255, 0.8)',
+            'rgba(40, 159, 64, 0.8)',
+            'rgba(210, 199, 199, 0.8)'
+        ];
+        const bordeColores = colores.map(color => color.replace('0.8', '1'));
+        
+        // Preparar datos para el gráfico de distribución de gastos
+        const categoriasGasto = datos.categorias.filter(cat => cat.tipo === 'gasto');
+        const nombresCategoriasGasto = categoriasGasto.map(cat => cat.nombre);
+        
+        console.log("Categorías de gasto:", categoriasGasto);
+        console.log("Nombres de categorías de gasto:", nombresCategoriasGasto);
+        
+        // Si no hay categorías de gastos, mostrar un mensaje en lugar del gráfico
+        if (categoriasGasto.length === 0) {
+            const ctxGastos = document.getElementById('gastosPorCategoria').getContext('2d');
+            const canvas = ctxGastos.canvas;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#666';
+            ctx.textAlign = 'center';
+            ctx.fillText('No hay categorías de gastos registradas', canvas.width / 2, canvas.height / 2);
+        } else {
+            // Calcular montos por categoría
+            const datosGasto = categoriasGasto.map(categoria => {
+                try {
+                    const monto = datos.transacciones
+                        .filter(t => t.categoria_id === categoria.id && t.tipo === 'gasto')
+                        .reduce((total, t) => total + (t.monto || 0), 0);
+                    console.log(`Categoría ${categoria.nombre}: ${monto}`);
+                    return monto;
+                } catch (error) {
+                    console.error("Error al calcular gastos por categoría:", error, categoria);
+                    return 0;
+                }
+            });
+            
+            console.log("Datos de gasto por categoría:", datosGasto);
+            
+            // Crear gráfico de distribución de gastos
+            const ctxGastos = document.getElementById('gastosPorCategoria').getContext('2d');
+            try {
+                new Chart(ctxGastos, {
+                    type: 'doughnut',
+                    data: {
+                        labels: nombresCategoriasGasto,
+                        datasets: [{
+                            label: 'Gastos por Categoría',
+                            data: datosGasto,
+                            backgroundColor: colores.slice(0, categoriasGasto.length),
+                            borderColor: bordeColores.slice(0, categoriasGasto.length),
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: 'right',
+                            },
+                            title: {
+                                display: true,
+                                text: 'Distribución de Gastos por Categoría'
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error("Error al crear gráfico de gastos por categoría:", error);
+            }
+        }
+        
+        // Crear datos para los gráficos de tendencia
+        // Para obtener fechas de los últimos 6 meses
+        const ultimosMeses = [];
+        const fechasCompara = [];
+        
+        for (let i = 5; i >= 0; i--) {
+            const fecha = new Date();
+            fecha.setMonth(fecha.getMonth() - i);
+            
+            const nombreMes = fecha.toLocaleString('default', { month: 'short' });
+            const anio = fecha.getFullYear();
+            ultimosMeses.push(`${nombreMes} ${anio}`);
+            
+            // Formato YYYY-MM para comparar con las fechas de transacciones
+            const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+            fechasCompara.push(`${anio}-${mes}`);
+        }
+        
+        console.log("Fechas para comparación:", fechasCompara);
+        
+        // Inicializar arrays para almacenar datos por mes
+        const ingresosPorMes = Array(6).fill(0);
+        const gastosPorMes = Array(6).fill(0);
+        
+        // Procesar transacciones para agruparlas por mes
+        datos.transacciones.forEach(transaccion => {
+            try {
+                // Obtener el año y mes de la transacción
+                const fechaPartes = transaccion.fecha.split('-');
+                if (fechaPartes.length >= 2) {
+                    const anioMes = `${fechaPartes[0]}-${fechaPartes[1]}`;
+                    
+                    // Buscar en qué mes de nuestro array cae esta transacción
+                    const indexMes = fechasCompara.indexOf(anioMes);
+                    
+                    // Si la fecha está en nuestro rango de los últimos 6 meses
+                    if (indexMes !== -1) {
+                        if (transaccion.tipo === "ingreso") {
+                            ingresosPorMes[indexMes] += transaccion.monto || 0;
+                        } else {
+                            gastosPorMes[indexMes] += transaccion.monto || 0;
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error("Error al procesar transacción:", error, transaccion);
+            }
+        });
+        
+        console.log("Ingresos por mes:", ingresosPorMes);
+        console.log("Gastos por mes:", gastosPorMes);
+        
+        // Crear gráfico de comparación ingresos vs gastos
+        const ctxComparacion = document.getElementById('ingresosVsGastos').getContext('2d');
+        try {
+            new Chart(ctxComparacion, {
+                type: 'bar',
+                data: {
+                    labels: ultimosMeses,
+                    datasets: [
+                        {
+                            label: 'Ingresos',
+                            data: ingresosPorMes,
+                            backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Gastos',
+                            data: gastosPorMes,
+                            backgroundColor: 'rgba(220, 53, 69, 0.7)',
+                            borderColor: 'rgba(220, 53, 69, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Ingresos vs Gastos por Mes'
+                        }
+                    }
+                }
+            });
+        } catch (error) {
+            console.error("Error al crear gráfico de ingresos vs gastos:", error);
+        }
+    });
+</script>
+{% endblock %}

@@ -549,31 +549,54 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
         total_gastos = sum(t.monto for t in transacciones if t.tipo == 'gasto')
         balance = total_ingresos - total_gastos
         
+        # Calcular porcentaje de gastos sobre ingresos
+        porcentaje_gastos = (total_gastos / total_ingresos * 100) if total_ingresos > 0 else 0
+        
+        # Calcular saldo total de todas las cuentas
+        saldo_total_cuentas = sum(cuenta.saldo_actual for cuenta in cuentas)
+        
+        # Preparar datos para el resumen financiero
         resumen_data = [
-            ['Resumen Financiero', '', '', ''],
+            ['REPORTE FINANCIERO', '', '', ''],
+            ['Fecha de generación:', datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), '', ''],
             ['', '', '', ''],
+            ['RESUMEN FINANCIERO', '', '', ''],
             ['Total Ingresos', '{:,.2f}'.format(total_ingresos), '', ''],
             ['Total Gastos', '{:,.2f}'.format(total_gastos), '', ''],
             ['Balance', '{:,.2f}'.format(balance), '', ''],
+            ['Porcentaje de Gastos sobre Ingresos', '{:.2f}%'.format(porcentaje_gastos), '', ''],
             ['', '', '', ''],
-            ['Saldos por Cuenta', '', '', ''],
-            ['Cuenta', 'Tipo', 'Saldo Actual', '']
+            ['SALDOS POR CUENTA', '', '', ''],
+            ['Cuenta', 'Tipo', 'Saldo Actual', 'Porcentaje del Total']
         ]
         
+        # Añadir datos de cuentas con porcentaje del total
         for cuenta in cuentas:
+            porcentaje = (cuenta.saldo_actual / saldo_total_cuentas * 100) if saldo_total_cuentas > 0 else 0
             resumen_data.append([
                 cuenta.nombre,
                 cuenta.tipo,
                 '{:,.2f}'.format(cuenta.saldo_actual),
-                ''
+                '{:.2f}%'.format(porcentaje)
             ])
+        
+        # Añadir total de saldos
+        resumen_data.append([
+            'TOTAL', 
+            '', 
+            '{:,.2f}'.format(saldo_total_cuentas),
+            '100.00%'
+        ])
         
         # Preparar datos de transacciones
         transacciones_data = [
             ['Fecha', 'Cuenta', 'Categoría', 'Tipo', 'Monto', 'Descripción']
         ]
         
-        for t in transacciones:
+        # Ordenar transacciones por fecha (más recientes primero)
+        transacciones_ordenadas = sorted(transacciones, key=lambda x: x.fecha, reverse=True)
+        
+        for t in transacciones_ordenadas:
             transacciones_data.append([
                 t.fecha.strftime('%Y-%m-%d'),
                 t.cuenta.nombre,
@@ -585,16 +608,69 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
         
         # Preparar análisis por categoría
         categorias_data = [
-            ['Categoría', 'Tipo', 'Total', '']
+            ['Categoría', 'Tipo', 'Total', 'Porcentaje', 'Cantidad de Transacciones']
         ]
         
+        # Calcular totales por categoría
         for categoria in categorias:
-            total = sum(t.monto for t in transacciones if t.categoria_id == categoria.id)
+            transacciones_categoria = [t for t in transacciones if t.categoria_id == categoria.id]
+            total = sum(t.monto for t in transacciones_categoria)
+            
+            # Calcular porcentaje sobre el total de transacciones del mismo tipo
+            if categoria.tipo == 'ingreso':
+                porcentaje = (total / total_ingresos * 100) if total_ingresos > 0 else 0
+            else:
+                porcentaje = (total / total_gastos * 100) if total_gastos > 0 else 0
+                
             categorias_data.append([
                 categoria.nombre,
                 categoria.tipo,
                 '{:,.2f}'.format(total),
-                ''
+                '{:.2f}%'.format(porcentaje),
+                len(transacciones_categoria)
+            ])
+        
+        # Añadir totales por tipo
+        categorias_data.append(['TOTAL INGRESOS', 'ingreso', '{:,.2f}'.format(total_ingresos), '100.00%', ''])
+        categorias_data.append(['TOTAL GASTOS', 'gasto', '{:,.2f}'.format(total_gastos), '100.00%', ''])
+        
+        # Preparar análisis mensual
+        # Agrupar transacciones por mes
+        transacciones_por_mes = {}
+        for t in transacciones:
+            mes_key = t.fecha.strftime('%Y-%m')
+            if mes_key not in transacciones_por_mes:
+                transacciones_por_mes[mes_key] = {'ingresos': 0, 'gastos': 0}
+            
+            if t.tipo == 'ingreso':
+                transacciones_por_mes[mes_key]['ingresos'] += t.monto
+            else:
+                transacciones_por_mes[mes_key]['gastos'] += t.monto
+        
+        # Ordenar meses
+        meses_ordenados = sorted(transacciones_por_mes.keys())
+        
+        # Preparar datos para análisis mensual
+        mensual_data = [
+            ['Mes', 'Ingresos', 'Gastos', 'Balance', 'Porcentaje Gastos/Ingresos']
+        ]
+        
+        for mes in meses_ordenados:
+            ingresos = transacciones_por_mes[mes]['ingresos']
+            gastos = transacciones_por_mes[mes]['gastos']
+            balance_mes = ingresos - gastos
+            porcentaje = (gastos / ingresos * 100) if ingresos > 0 else 0
+            
+            # Formatear mes para mejor visualización
+            año, mes_num = mes.split('-')
+            nombre_mes = datetime.datetime(int(año), int(mes_num), 1).strftime('%B %Y')
+            
+            mensual_data.append([
+                nombre_mes,
+                '{:,.2f}'.format(ingresos),
+                '{:,.2f}'.format(gastos),
+                '{:,.2f}'.format(balance_mes),
+                '{:.2f}%'.format(porcentaje)
             ])
         
         # Actualizar las hojas con los datos
@@ -605,7 +681,7 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
             body={'values': resumen_data}
         ).execute()
         
-        # Crear nueva hoja para transacciones
+        # Crear nuevas hojas
         body = {
             'requests': [
                 {
@@ -619,6 +695,13 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
                     'addSheet': {
                         'properties': {
                             'title': 'Análisis por Categoría'
+                        }
+                    }
+                },
+                {
+                    'addSheet': {
+                        'properties': {
+                            'title': 'Análisis Mensual'
                         }
                     }
                 }
@@ -644,8 +727,16 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
             body={'values': categorias_data}
         ).execute()
         
-        # Aplicar formato
+        sheets_service.spreadsheets().values().update(
+            spreadsheetId=spreadsheet_id,
+            range='Análisis Mensual!A1',
+            valueInputOption='USER_ENTERED',
+            body={'values': mensual_data}
+        ).execute()
+        
+        # Aplicar formato a todas las hojas
         formato_requests = [
+            # Formato para el título principal
             {
                 'repeatCell': {
                     'range': {
@@ -658,7 +749,145 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
                             'backgroundColor': {'red': 0.2, 'green': 0.2, 'blue': 0.2},
                             'textFormat': {
                                 'foregroundColor': {'red': 1, 'green': 1, 'blue': 1},
+                                'fontSize': 16,
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            },
+            # Formato para subtítulos
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 0,
+                        'startRowIndex': 3,
+                        'endRowIndex': 4
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.8, 'green': 0.8, 'blue': 0.8},
+                            'textFormat': {
                                 'fontSize': 14,
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            },
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 0,
+                        'startRowIndex': 9,
+                        'endRowIndex': 10
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.8, 'green': 0.8, 'blue': 0.8},
+                            'textFormat': {
+                                'fontSize': 14,
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            },
+            # Formato para encabezados de tabla
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 0,
+                        'startRowIndex': 10,
+                        'endRowIndex': 11
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.9, 'green': 0.9, 'blue': 0.9},
+                            'textFormat': {
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            },
+            # Formato para la fila de total
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 0,
+                        'startRowIndex': 10 + len(cuentas),
+                        'endRowIndex': 11 + len(cuentas)
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.9, 'green': 0.9, 'blue': 0.9},
+                            'textFormat': {
+                                'bold': True
+                            }
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat)'
+                }
+            },
+            # Formato para encabezados de tabla en otras hojas
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 1,  # Hoja de Transacciones
+                        'startRowIndex': 0,
+                        'endRowIndex': 1
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.9, 'green': 0.9, 'blue': 0.9},
+                            'textFormat': {
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            },
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 2,  # Hoja de Análisis por Categoría
+                        'startRowIndex': 0,
+                        'endRowIndex': 1
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.9, 'green': 0.9, 'blue': 0.9},
+                            'textFormat': {
+                                'bold': True
+                            },
+                            'horizontalAlignment': 'CENTER'
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat,horizontalAlignment)'
+                }
+            },
+            {
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 3,  # Hoja de Análisis Mensual
+                        'startRowIndex': 0,
+                        'endRowIndex': 1
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.9, 'green': 0.9, 'blue': 0.9},
+                            'textFormat': {
                                 'bold': True
                             },
                             'horizontalAlignment': 'CENTER'
@@ -669,9 +898,95 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
             }
         ]
         
+        # Aplicar formato a las filas de totales en la hoja de categorías
+        if len(categorias) > 0:
+            formato_requests.append({
+                'repeatCell': {
+                    'range': {
+                        'sheetId': 2,  # Hoja de Análisis por Categoría
+                        'startRowIndex': len(categorias) + 1,
+                        'endRowIndex': len(categorias) + 3
+                    },
+                    'cell': {
+                        'userEnteredFormat': {
+                            'backgroundColor': {'red': 0.9, 'green': 0.9, 'blue': 0.9},
+                            'textFormat': {
+                                'bold': True
+                            }
+                        }
+                    },
+                    'fields': 'userEnteredFormat(backgroundColor,textFormat)'
+                }
+            })
+        
         sheets_service.spreadsheets().batchUpdate(
             spreadsheetId=spreadsheet_id,
             body={'requests': formato_requests}
+        ).execute()
+        
+        # Ajustar ancho de columnas
+        dimension_requests = [
+            {
+                'updateDimensionProperties': {
+                    'range': {
+                        'sheetId': 0,
+                        'dimension': 'COLUMNS',
+                        'startIndex': 0,
+                        'endIndex': 4
+                    },
+                    'properties': {
+                        'pixelSize': 150
+                    },
+                    'fields': 'pixelSize'
+                }
+            },
+            {
+                'updateDimensionProperties': {
+                    'range': {
+                        'sheetId': 1,
+                        'dimension': 'COLUMNS',
+                        'startIndex': 0,
+                        'endIndex': 6
+                    },
+                    'properties': {
+                        'pixelSize': 150
+                    },
+                    'fields': 'pixelSize'
+                }
+            },
+            {
+                'updateDimensionProperties': {
+                    'range': {
+                        'sheetId': 2,
+                        'dimension': 'COLUMNS',
+                        'startIndex': 0,
+                        'endIndex': 5
+                    },
+                    'properties': {
+                        'pixelSize': 150
+                    },
+                    'fields': 'pixelSize'
+                }
+            },
+            {
+                'updateDimensionProperties': {
+                    'range': {
+                        'sheetId': 3,
+                        'dimension': 'COLUMNS',
+                        'startIndex': 0,
+                        'endIndex': 5
+                    },
+                    'properties': {
+                        'pixelSize': 150
+                    },
+                    'fields': 'pixelSize'
+                }
+            }
+        ]
+        
+        sheets_service.spreadsheets().batchUpdate(
+            spreadsheetId=spreadsheet_id,
+            body={'requests': dimension_requests}
         ).execute()
         
         # Hacer público el archivo para cualquiera con el enlace
@@ -681,7 +996,10 @@ def exportar_reporte_financiero(transacciones, cuentas, categorias):
             fields='id'
         ).execute()
         
-        return True, f'Reporte creado correctamente. ID: {spreadsheet_id}'
+        # Obtener el enlace para compartir
+        file_url = f"https://docs.google.com/spreadsheets/d/{spreadsheet_id}/edit"
+        
+        return True, f'Reporte creado correctamente. Enlace: {file_url}'
     except Exception as e:
         logging.error(f"Error al exportar reporte financiero: {str(e)}")
         return False, str(e)

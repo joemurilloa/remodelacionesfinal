@@ -3081,3 +3081,538 @@
 2025-04-04 20:59:45,299 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
 2025-04-04 20:59:45,303 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
 2025-04-04 20:59:45,329 - INFO - 127.0.0.1 - - [04/Apr/2025 20:59:45] "GET /facturas/pdf/3 HTTP/1.1" 200 -
+2025-04-04 21:07:12,678 - INFO -  * Restarting with stat
+2025-04-04 21:07:15,226 - WARNING -  * Debugger is active!
+2025-04-04 21:07:15,252 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 21:07:15,360 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 21:07:19,493 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:19] "GET / HTTP/1.1" 200 -
+2025-04-04 21:07:19,640 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:19] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-04 21:07:19,673 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:19] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-04 21:07:20,164 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:20] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-04 21:07:21,008 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:21] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 21:07:21,037 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:21,039 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:26,069 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:26] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 21:07:26,106 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:26,118 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:26,585 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:26] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 21:07:26,615 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:26,617 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:27,529 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:27] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 21:07:27,570 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:27] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:27,578 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:27] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:29,373 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:29] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 21:07:29,408 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:29,412 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:32,432 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:32] "GET /clientes/nuevo HTTP/1.1" 200 -
+2025-04-04 21:07:32,468 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:32,473 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:53,439 - INFO - "GET /?state=QyekpxRsH8LmYd5mKlFZaOzgSyqPOP&code=4/0Ab_5qll_EMsMHhLqHnr2oejR-cf8QIBOkKpt8QUtlGhwu0UxrgpTIWyPADaeUetfqHdFfQ&scope=https://www.googleapis.com/auth/drive.file%20https://www.googleapis.com/auth/spreadsheets HTTP/1.1" 200 65
+2025-04-04 21:07:53,853 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:07:53,873 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:07:54,818 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:07:56,501 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 21:07:56,532 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:56] "[32mPOST /clientes/nuevo HTTP/1.1[0m" 302 -
+2025-04-04 21:07:56,543 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:56] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 21:07:56,618 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:56,619 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:07:58,748 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:58] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 21:07:58,795 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:58] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:07:58,800 - INFO - 127.0.0.1 - - [04/Apr/2025 21:07:58] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:08:00,805 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:00] "GET /cotizaciones/nueva HTTP/1.1" 200 -
+2025-04-04 21:08:00,839 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:00] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:08:00,851 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:00] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:08:11,568 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:08:12,378 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:08:12,576 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 21:08:14,007 - INFO - PDF de cotización subido correctamente: cotizacion_6_20250404_210810.pdf
+2025-04-04 21:08:14,013 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:14] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-04 21:08:14,051 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:14] "GET /cotizaciones/ver/6 HTTP/1.1" 200 -
+2025-04-04 21:08:14,096 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:08:14,104 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:08:14,143 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:14] "GET /cotizaciones/pdf/6 HTTP/1.1" 200 -
+2025-04-04 21:08:15,883 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:15] "GET /cotizaciones/pdf/6 HTTP/1.1" 200 -
+2025-04-04 21:08:22,716 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:08:23,677 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:08:23,804 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 21:08:26,017 - INFO - PDF de factura subido correctamente: factura_4_20250404_210821.pdf
+2025-04-04 21:08:26,020 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:26] "[32mGET /cotizaciones/a-factura/6 HTTP/1.1[0m" 302 -
+2025-04-04 21:08:26,086 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:26] "GET /facturas/ver/4 HTTP/1.1" 200 -
+2025-04-04 21:08:26,130 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:08:26,136 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:08:26,153 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:26] "GET /facturas/pdf/4 HTTP/1.1" 200 -
+2025-04-04 21:08:28,318 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:08:29,243 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:08:29,374 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 21:08:29,559 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:29] "GET /facturas/pdf/4 HTTP/1.1" 200 -
+2025-04-04 21:08:30,756 - INFO - PDF de factura subido correctamente: factura_4_20250404_210827.pdf
+2025-04-04 21:08:30,763 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:30] "[32mPOST /facturas/marcar-pagada/4 HTTP/1.1[0m" 302 -
+2025-04-04 21:08:30,780 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:30] "GET /facturas/ver/4 HTTP/1.1" 200 -
+2025-04-04 21:08:30,828 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:30] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:08:30,833 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:30] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:08:30,873 - INFO - 127.0.0.1 - - [04/Apr/2025 21:08:30] "GET /facturas/pdf/4 HTTP/1.1" 200 -
+2025-04-04 21:09:32,533 - INFO - 127.0.0.1 - - [04/Apr/2025 21:09:32] "[36mGET /facturas/pdf/4 HTTP/1.1[0m" 304 -
+2025-04-04 21:10:06,810 - INFO - 127.0.0.1 - - [04/Apr/2025 21:10:06] "GET / HTTP/1.1" 200 -
+2025-04-04 21:10:06,860 - INFO - 127.0.0.1 - - [04/Apr/2025 21:10:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:10:06,882 - INFO - 127.0.0.1 - - [04/Apr/2025 21:10:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:11:16,097 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:11:16,109 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:11:16,954 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:11:18,315 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 21:11:18,318 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:11:19,098 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:11:19,243 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 21:11:28,016 - INFO - Sincronización de cotizaciones completada: 5 nuevos, 1 actualizados.
+2025-04-04 21:11:28,019 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:11:28,859 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:11:28,965 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 21:11:40,514 - INFO - Sincronización de facturas completada: 6 nuevas, 2 actualizadas.
+2025-04-04 21:11:40,514 - INFO - Backup completo realizado con éxito
+2025-04-04 21:11:40,516 - INFO - 127.0.0.1 - - [04/Apr/2025 21:11:40] "[32mGET /backup HTTP/1.1[0m" 302 -
+2025-04-04 21:11:40,525 - INFO - 127.0.0.1 - - [04/Apr/2025 21:11:40] "GET / HTTP/1.1" 200 -
+2025-04-04 21:11:40,561 - INFO - 127.0.0.1 - - [04/Apr/2025 21:11:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:11:40,564 - INFO - 127.0.0.1 - - [04/Apr/2025 21:11:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:13:22,339 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:13:22,343 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:13:23,116 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:13:24,717 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 21:13:24,727 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:13:25,627 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:13:25,746 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 21:13:34,406 - INFO - Sincronización de cotizaciones completada: 0 nuevos, 6 actualizados.
+2025-04-04 21:13:34,410 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:13:35,560 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:13:35,672 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 21:13:50,517 - INFO - Sincronización de facturas completada: 2 nuevas, 8 actualizadas.
+2025-04-04 21:13:50,518 - INFO - Backup completo realizado con éxito
+2025-04-04 21:13:50,520 - INFO - 127.0.0.1 - - [04/Apr/2025 21:13:50] "[32mGET /backup HTTP/1.1[0m" 302 -
+2025-04-04 21:13:50,532 - INFO - 127.0.0.1 - - [04/Apr/2025 21:13:50] "GET / HTTP/1.1" 200 -
+2025-04-04 21:13:50,579 - INFO - 127.0.0.1 - - [04/Apr/2025 21:13:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:13:50,584 - INFO - 127.0.0.1 - - [04/Apr/2025 21:13:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:14:35,803 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:14:35,810 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:14:36,665 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:14:38,043 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 21:14:38,043 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:14:38,914 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:14:39,121 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 21:14:39,308 - INFO - Sincronización de cotizaciones completada: 0 nuevos, 0 actualizados.
+2025-04-04 21:14:39,308 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:14:40,094 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 21:14:40,308 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 21:14:40,574 - INFO - Sincronización de facturas completada: 0 nuevas, 0 actualizadas.
+2025-04-04 21:14:40,574 - INFO - Backup completo realizado con éxito
+2025-04-04 21:14:40,578 - INFO - 127.0.0.1 - - [04/Apr/2025 21:14:40] "[32mGET /backup HTTP/1.1[0m" 302 -
+2025-04-04 21:14:40,591 - INFO - 127.0.0.1 - - [04/Apr/2025 21:14:40] "GET / HTTP/1.1" 200 -
+2025-04-04 21:14:40,640 - INFO - 127.0.0.1 - - [04/Apr/2025 21:14:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:14:40,645 - INFO - 127.0.0.1 - - [04/Apr/2025 21:14:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:19:43,709 - INFO -  * Restarting with stat
+2025-04-04 21:19:45,721 - WARNING -  * Debugger is active!
+2025-04-04 21:19:45,721 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 21:19:45,811 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 21:19:46,688 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:46] "GET / HTTP/1.1" 200 -
+2025-04-04 21:19:46,824 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:46] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:19:46,824 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:46] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:19:49,554 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:49] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:19:49,589 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:19:49,595 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:19:56,145 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:56] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:19:56,206 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:19:56,212 - INFO - 127.0.0.1 - - [04/Apr/2025 21:19:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:05,703 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:05] "GET /cashflow/cuentas HTTP/1.1" 200 -
+2025-04-04 21:20:05,760 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:05] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:05,766 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:05] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:12,873 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:12] "[32mPOST /cashflow/cuentas HTTP/1.1[0m" 302 -
+2025-04-04 21:20:12,919 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:12] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:20:12,969 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:12] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:12,973 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:12] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:20,339 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:20] "GET /cashflow/categorias HTTP/1.1" 200 -
+2025-04-04 21:20:20,374 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:20] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:20,378 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:20] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:42,928 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:42] "[32mPOST /cashflow/categorias HTTP/1.1[0m" 302 -
+2025-04-04 21:20:42,958 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:42] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:20:43,006 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:43,008 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:44,877 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:44] "GET /cashflow/categorias HTTP/1.1" 200 -
+2025-04-04 21:20:44,911 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:44,915 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:53,018 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:53] "[32mPOST /cashflow/categorias HTTP/1.1[0m" 302 -
+2025-04-04 21:20:53,053 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:53] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:20:53,092 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:53,105 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:20:56,100 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:56] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:20:56,154 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:20:56,155 - INFO - 127.0.0.1 - - [04/Apr/2025 21:20:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:21:14,106 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:14] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 21:21:14,141 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:14] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:21:14,188 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:14] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:21:14,193 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:14] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:21:29,458 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:29] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:21:29,495 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:29] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:21:29,500 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:29] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:21:53,622 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:53] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 21:21:53,636 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:53] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:21:53,685 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:21:53,685 - INFO - 127.0.0.1 - - [04/Apr/2025 21:21:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:24:34,199 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:24:34,207 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:24:39,139 - INFO - 127.0.0.1 - - [04/Apr/2025 21:24:39] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 21:24:39,167 - INFO - 127.0.0.1 - - [04/Apr/2025 21:24:39] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:24:39,214 - INFO - 127.0.0.1 - - [04/Apr/2025 21:24:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:24:39,222 - INFO - 127.0.0.1 - - [04/Apr/2025 21:24:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:31:08,678 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\backup_drive.py', reloading
+2025-04-04 21:31:08,900 - INFO -  * Restarting with stat
+2025-04-04 21:49:31,535 - INFO -  * Restarting with stat
+2025-04-04 21:49:33,812 - WARNING -  * Debugger is active!
+2025-04-04 21:49:33,812 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 21:49:33,927 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 21:49:39,699 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:39] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:49:39,810 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:49:39,825 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:49:49,822 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:49:49,822 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:49:55,657 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:55] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 21:49:55,673 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:55] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:49:55,728 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:49:55,737 - INFO - 127.0.0.1 - - [04/Apr/2025 21:49:55] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:50:31,121 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:50:31,128 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:50:36,812 - INFO - 127.0.0.1 - - [04/Apr/2025 21:50:36] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 21:50:36,844 - INFO - 127.0.0.1 - - [04/Apr/2025 21:50:36] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:50:36,889 - INFO - 127.0.0.1 - - [04/Apr/2025 21:50:36] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:50:36,891 - INFO - 127.0.0.1 - - [04/Apr/2025 21:50:36] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:50:52,791 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\backup_drive.py', reloading
+2025-04-04 21:50:53,008 - INFO -  * Restarting with stat
+2025-04-04 21:50:55,675 - WARNING -  * Debugger is active!
+2025-04-04 21:50:55,691 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 21:50:55,786 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 21:50:57,170 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:50:57,170 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:51:01,964 - INFO - 127.0.0.1 - - [04/Apr/2025 21:51:01] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 21:51:02,032 - INFO - 127.0.0.1 - - [04/Apr/2025 21:51:02] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:51:02,170 - INFO - 127.0.0.1 - - [04/Apr/2025 21:51:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:51:02,170 - INFO - 127.0.0.1 - - [04/Apr/2025 21:51:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:53:07,051 - INFO - 127.0.0.1 - - [04/Apr/2025 21:53:07] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:53:07,116 - INFO - 127.0.0.1 - - [04/Apr/2025 21:53:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:53:07,120 - INFO - 127.0.0.1 - - [04/Apr/2025 21:53:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:53:54,027 - INFO -  * Restarting with stat
+2025-04-04 21:53:56,677 - WARNING -  * Debugger is active!
+2025-04-04 21:53:56,677 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 21:53:56,776 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 21:53:57,930 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\app.py', reloading
+2025-04-04 21:53:58,157 - INFO -  * Restarting with stat
+2025-04-04 21:54:00,749 - WARNING -  * Debugger is active!
+2025-04-04 21:54:00,757 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 21:54:00,858 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 21:54:10,283 - INFO - 127.0.0.1 - - [04/Apr/2025 21:54:10] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:54:10,412 - INFO - 127.0.0.1 - - [04/Apr/2025 21:54:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:54:10,412 - INFO - 127.0.0.1 - - [04/Apr/2025 21:54:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:54:44,137 - INFO - 127.0.0.1 - - [04/Apr/2025 21:54:44] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:54:44,210 - INFO - 127.0.0.1 - - [04/Apr/2025 21:54:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:54:44,216 - INFO - 127.0.0.1 - - [04/Apr/2025 21:54:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:55:32,509 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:32] "[32mGET /cashflow HTTP/1.1[0m" 302 -
+2025-04-04 21:55:32,525 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:32] "GET / HTTP/1.1" 200 -
+2025-04-04 21:55:32,591 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:55:32,596 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:55:34,851 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:34] "[32mGET /cashflow HTTP/1.1[0m" 302 -
+2025-04-04 21:55:34,862 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:34] "GET / HTTP/1.1" 200 -
+2025-04-04 21:55:34,914 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:55:34,916 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:55:35,550 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "[32mGET /cashflow HTTP/1.1[0m" 302 -
+2025-04-04 21:55:35,562 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "GET / HTTP/1.1" 200 -
+2025-04-04 21:55:35,602 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:55:35,609 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:55:35,804 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "[32mGET /cashflow HTTP/1.1[0m" 302 -
+2025-04-04 21:55:35,820 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "GET / HTTP/1.1" 200 -
+2025-04-04 21:55:35,867 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:55:35,883 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:35] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:55:49,583 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:49] "GET /facturas HTTP/1.1" 200 -
+2025-04-04 21:55:49,631 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:55:49,631 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:55:50,603 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:50] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:55:50,643 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:55:50,656 - INFO - 127.0.0.1 - - [04/Apr/2025 21:55:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:56:33,334 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:33] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:56:33,381 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:56:33,383 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:56:54,418 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:56:54,428 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 21:56:59,095 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:59] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 21:56:59,126 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:59] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:56:59,166 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:59] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:56:59,166 - INFO - 127.0.0.1 - - [04/Apr/2025 21:56:59] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:59:06,019 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:06] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:59:06,089 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:59:06,091 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:59:19,432 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:19] "GET /cashflow/categorias HTTP/1.1" 200 -
+2025-04-04 21:59:19,509 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:19] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:59:19,516 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:19] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:59:39,786 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:39] "[32mPOST /cashflow/categorias HTTP/1.1[0m" 302 -
+2025-04-04 21:59:39,815 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:39] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 21:59:39,841 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:39] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:59:39,866 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:39] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 21:59:42,250 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:42] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 21:59:42,326 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:42] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 21:59:42,342 - INFO - 127.0.0.1 - - [04/Apr/2025 21:59:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:00:00,359 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:00] "GET /static/comprobantes/factura_17.pdf HTTP/1.1" 200 -
+2025-04-04 22:00:22,996 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:22] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 22:00:23,038 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:23] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:00:23,087 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:23] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:00:23,094 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:23] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:00:33,010 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:33] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:00:33,057 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:00:33,059 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:00:34,048 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:00:34,091 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:00:34,092 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:00:34,235 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:00:34,277 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:00:34,283 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:00:34,472 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:00:34,519 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:00:34,531 - INFO - 127.0.0.1 - - [04/Apr/2025 22:00:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:02:31,435 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:31] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:02:31,475 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:31] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:02:31,478 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:31] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:02:32,593 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:32] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:02:32,657 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:02:32,661 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:02:41,733 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:41] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:02:41,777 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:02:41,790 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:41] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:02:48,640 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:48] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:02:48,680 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:02:48,684 - INFO - 127.0.0.1 - - [04/Apr/2025 22:02:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:04:45,340 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\app.py', reloading
+2025-04-04 22:04:45,559 - INFO -  * Restarting with stat
+2025-04-04 22:04:47,806 - WARNING -  * Debugger is active!
+2025-04-04 22:04:47,810 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 22:04:47,905 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 22:04:51,250 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\app.py', reloading
+2025-04-04 22:04:51,446 - INFO -  * Restarting with stat
+2025-04-04 22:04:53,970 - WARNING -  * Debugger is active!
+2025-04-04 22:04:53,976 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 22:04:54,060 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 22:05:34,125 - INFO - 127.0.0.1 - - [04/Apr/2025 22:05:34] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:05:34,267 - INFO - 127.0.0.1 - - [04/Apr/2025 22:05:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:05:34,269 - INFO - 127.0.0.1 - - [04/Apr/2025 22:05:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:05:55,934 - INFO - 127.0.0.1 - - [04/Apr/2025 22:05:55] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 22:05:55,995 - INFO - 127.0.0.1 - - [04/Apr/2025 22:05:55] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:05:56,008 - INFO - 127.0.0.1 - - [04/Apr/2025 22:05:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:06:04,775 - INFO - 127.0.0.1 - - [04/Apr/2025 22:06:04] "GET /static/comprobantes/1c60f8fe-1aeb-44f0-82c8-277623b1dd7c.jpg HTTP/1.1" 200 -
+2025-04-04 22:08:25,397 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\app.py', reloading
+2025-04-04 22:08:25,583 - INFO -  * Restarting with stat
+2025-04-04 22:08:27,856 - WARNING -  * Debugger is active!
+2025-04-04 22:08:27,861 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 22:08:27,944 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 22:09:28,442 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\app.py', reloading
+2025-04-04 22:09:28,687 - INFO -  * Restarting with stat
+2025-04-04 22:09:31,229 - WARNING -  * Debugger is active!
+2025-04-04 22:09:31,245 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 22:09:31,369 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 22:09:32,049 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:32] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:09:32,191 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:09:32,191 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:09:53,920 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:53] "[32mGET /cashflow/transacciones/eliminar/1 HTTP/1.1[0m" 302 -
+2025-04-04 22:09:53,967 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:53] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:09:54,014 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:54] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:09:54,030 - INFO - 127.0.0.1 - - [04/Apr/2025 22:09:54] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:01,445 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:01] "[32mGET /cashflow/transacciones/eliminar/2 HTTP/1.1[0m" 302 -
+2025-04-04 22:10:01,479 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:01] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:10:01,540 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:01] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:01,540 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:01] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:08,223 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:08] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 22:10:08,300 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:08,310 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:21,840 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:21] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:10:21,904 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:21,904 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:24,656 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:24] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 22:10:24,702 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:24] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:24,702 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:24] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:32,880 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:32] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 22:10:32,922 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:32] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:10:32,978 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:32,984 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:38,812 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:38] "[32mGET /cashflow/transacciones/eliminar/5 HTTP/1.1[0m" 302 -
+2025-04-04 22:10:38,840 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:38] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:10:38,903 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:38] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:38,916 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:38] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:49,186 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:49] "GET /facturas HTTP/1.1" 200 -
+2025-04-04 22:10:49,251 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:49] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:49,265 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:49] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:10:50,234 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:50] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:10:50,298 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:50] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:10:50,298 - INFO - 127.0.0.1 - - [04/Apr/2025 22:10:50] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:12:45,679 - INFO - 127.0.0.1 - - [04/Apr/2025 22:12:45] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 22:12:45,742 - INFO - 127.0.0.1 - - [04/Apr/2025 22:12:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:12:45,742 - INFO - 127.0.0.1 - - [04/Apr/2025 22:12:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:13:06,581 - INFO - 127.0.0.1 - - [04/Apr/2025 22:13:06] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 22:13:06,605 - INFO - 127.0.0.1 - - [04/Apr/2025 22:13:06] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:13:06,662 - INFO - 127.0.0.1 - - [04/Apr/2025 22:13:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:13:06,669 - INFO - 127.0.0.1 - - [04/Apr/2025 22:13:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:14:43,767 - INFO - 127.0.0.1 - - [04/Apr/2025 22:14:43] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:14:43,826 - INFO - 127.0.0.1 - - [04/Apr/2025 22:14:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:14:43,827 - INFO - 127.0.0.1 - - [04/Apr/2025 22:14:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:16:49,578 - INFO -  * Detected change in 'C:\\Users\\joemurilloa\\Videos\\remodelacionesfinal\\app.py', reloading
+2025-04-04 22:16:49,868 - INFO -  * Restarting with stat
+2025-04-04 22:21:20,036 - INFO -  * Restarting with stat
+2025-04-04 22:21:22,005 - WARNING -  * Debugger is active!
+2025-04-04 22:21:22,020 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 22:21:22,104 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 22:21:25,194 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:21:25,202 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:21:28,653 - ERROR - Error al exportar reporte financiero: <HttpError 400 when requesting https://sheets.googleapis.com/v4/spreadsheets/13-K1oVvlV-lxkGQ9XL3JnavuVaHsVSUljpKPSqOgKvo:batchUpdate?alt=json returned "Invalid requests[5].repeatCell: No grid with id: 1". Details: "Invalid requests[5].repeatCell: No grid with id: 1">
+2025-04-04 22:21:28,656 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:28] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:21:28,720 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:28] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:21:28,841 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:28] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:21:28,846 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:28] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:21:31,397 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:21:31,407 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:21:34,783 - ERROR - Error al exportar reporte financiero: <HttpError 400 when requesting https://sheets.googleapis.com/v4/spreadsheets/1RjW_1Epn8tqUhlTSWdOVetgMcJ5TthbduWw3FULf-hY:batchUpdate?alt=json returned "Invalid requests[5].repeatCell: No grid with id: 1". Details: "Invalid requests[5].repeatCell: No grid with id: 1">
+2025-04-04 22:21:34,802 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:34] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:21:34,827 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:34] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:21:34,872 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:34] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:21:34,879 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:34] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:21:41,967 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:41] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 22:21:41,995 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:41] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:21:42,011 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:42] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:21:43,050 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:43] "GET /facturas HTTP/1.1" 200 -
+2025-04-04 22:21:43,091 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:21:43,097 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:21:43,664 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:43] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:21:43,725 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:43] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:21:43,740 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:43] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:21:48,932 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:21:48,971 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:21:53,100 - ERROR - Error al exportar reporte financiero: <HttpError 400 when requesting https://sheets.googleapis.com/v4/spreadsheets/1XAnX8ebP0VQ53WlzmPHaSYhaBQt542Kq2jNNL6plZto:batchUpdate?alt=json returned "Invalid requests[5].repeatCell: No grid with id: 1". Details: "Invalid requests[5].repeatCell: No grid with id: 1">
+2025-04-04 22:21:53,107 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:53] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:21:53,139 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:53] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:21:53,187 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:53] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:21:53,191 - INFO - 127.0.0.1 - - [04/Apr/2025 22:21:53] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:22:02,767 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:22:02,781 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:22:56,025 - INFO - 127.0.0.1 - - [04/Apr/2025 22:22:56] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 22:22:56,084 - INFO - 127.0.0.1 - - [04/Apr/2025 22:22:56] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:22:56,087 - INFO - 127.0.0.1 - - [04/Apr/2025 22:22:56] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:23:03,460 - ERROR - Error al exportar reporte financiero: The read operation timed out
+2025-04-04 22:23:03,464 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:03] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:23:13,671 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:13] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 22:23:13,703 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:13] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:23:13,763 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:13] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:23:13,767 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:13] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:23:17,699 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:23:17,714 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:23:21,636 - ERROR - Error al exportar reporte financiero: <HttpError 400 when requesting https://sheets.googleapis.com/v4/spreadsheets/1CaUKfSXFdc7j1mt-xklA9E0JBfifAKjDRNJ2yDuYhYw:batchUpdate?alt=json returned "Invalid requests[5].repeatCell: No grid with id: 1". Details: "Invalid requests[5].repeatCell: No grid with id: 1">
+2025-04-04 22:23:21,636 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:21] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:23:21,653 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:21] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:23:21,699 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:21] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:23:21,699 - INFO - 127.0.0.1 - - [04/Apr/2025 22:23:21] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:28:52,186 - INFO -  * Restarting with stat
+2025-04-04 22:28:54,674 - WARNING -  * Debugger is active!
+2025-04-04 22:28:54,680 - INFO -  * Debugger PIN: 987-609-628
+2025-04-04 22:28:54,758 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2025-04-04 22:29:37,480 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:37] "GET / HTTP/1.1" 200 -
+2025-04-04 22:29:37,636 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:37] "GET /static/css/style.css HTTP/1.1" 200 -
+2025-04-04 22:29:37,669 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:37] "GET /static/js/main.js HTTP/1.1" 200 -
+2025-04-04 22:29:38,108 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-04 22:29:40,931 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:40] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:29:40,964 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:40] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:29:40,972 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:40] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:29:44,700 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:44] "GET / HTTP/1.1" 200 -
+2025-04-04 22:29:44,739 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:44] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:29:44,742 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:44] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:29:45,506 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:45] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 22:29:45,630 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:29:45,630 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:29:48,425 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:48] "GET /clientes/nuevo HTTP/1.1" 200 -
+2025-04-04 22:29:48,455 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:48] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:29:48,461 - INFO - 127.0.0.1 - - [04/Apr/2025 22:29:48] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:29:59,752 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:29:59,778 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:30:00,813 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 22:30:02,615 - INFO - Clientes exportados correctamente a Google Sheets: 15-P6EJoV1abkPfazkl8tN8rnTX-kGcTYJm_YP3jeJBU
+2025-04-04 22:30:02,617 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:02] "[32mPOST /clientes/nuevo HTTP/1.1[0m" 302 -
+2025-04-04 22:30:02,631 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:02] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 22:30:02,676 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:02] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:02,680 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:02] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:06,800 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:06] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 22:30:06,836 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:06] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:06,841 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:06] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:08,846 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:08] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 22:30:08,877 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:08,882 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:10,535 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:10] "GET /cotizaciones/nueva?cliente_id=5 HTTP/1.1" 200 -
+2025-04-04 22:30:10,562 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:10,566 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:23,330 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:30:24,165 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 22:30:24,309 - INFO - Carpeta 'cotizaciones' encontrada: 1MHtdTzZd_b_VXjzCJfqiyGVmdMra8zSj
+2025-04-04 22:30:25,941 - INFO - PDF de cotización subido correctamente: cotizacion_7_20250404_223022.pdf
+2025-04-04 22:30:25,946 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:25] "[32mPOST /cotizaciones/nueva HTTP/1.1[0m" 302 -
+2025-04-04 22:30:26,012 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:26] "GET /cotizaciones/ver/7 HTTP/1.1" 200 -
+2025-04-04 22:30:26,049 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:26] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:26,052 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:26] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:26,096 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:26] "GET /cotizaciones/pdf/7 HTTP/1.1" 200 -
+2025-04-04 22:30:33,670 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:33] "GET /cotizaciones/pdf/7 HTTP/1.1" 200 -
+2025-04-04 22:30:43,300 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:30:44,127 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 22:30:44,329 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 22:30:45,740 - INFO - PDF de factura subido correctamente: factura_5_20250404_223042.pdf
+2025-04-04 22:30:45,759 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:45] "[32mGET /cotizaciones/a-factura/7 HTTP/1.1[0m" 302 -
+2025-04-04 22:30:45,826 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:45] "GET /facturas/ver/5 HTTP/1.1" 200 -
+2025-04-04 22:30:45,872 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:45] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:45,872 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:45] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:45,900 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:45] "GET /facturas/pdf/5 HTTP/1.1" 200 -
+2025-04-04 22:30:49,996 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:30:50,823 - INFO - Carpeta 'sistema_cotizaciones_backups' encontrada: 1Bp-Xm3eET-FhdXgJ3Y8m4dSPIC0e6TsQ
+2025-04-04 22:30:51,046 - INFO - Carpeta 'facturas' encontrada: 1woM6nvbQVRy4t9BUwOa4uy6g65QxstkC
+2025-04-04 22:30:52,402 - INFO - PDF de factura subido correctamente: factura_5_20250404_223049.pdf
+2025-04-04 22:30:52,402 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:52] "[32mPOST /facturas/marcar-pagada/5 HTTP/1.1[0m" 302 -
+2025-04-04 22:30:52,425 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:52] "GET /facturas/ver/5 HTTP/1.1" 200 -
+2025-04-04 22:30:52,465 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:52] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:30:52,478 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:52] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:30:52,488 - INFO - 127.0.0.1 - - [04/Apr/2025 22:30:52] "GET /facturas/pdf/5 HTTP/1.1" 200 -
+2025-04-04 22:31:02,463 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:02] "GET /facturas/pdf/5 HTTP/1.1" 200 -
+2025-04-04 22:31:09,434 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:09] "GET /facturas HTTP/1.1" 200 -
+2025-04-04 22:31:09,484 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:31:09,499 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:31:10,249 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:10] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:31:10,281 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:31:10,295 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:31:11,553 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:11] "GET /cashflow/transacciones HTTP/1.1" 200 -
+2025-04-04 22:31:11,601 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:11] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:31:11,619 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:11] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:31:32,461 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:32] "[32mPOST /cashflow/transacciones HTTP/1.1[0m" 302 -
+2025-04-04 22:31:32,502 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:32] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:31:32,548 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:32] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:31:32,550 - INFO - 127.0.0.1 - - [04/Apr/2025 22:31:32] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:33:42,773 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:33:42,796 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:33:47,191 - ERROR - Error al exportar reporte financiero: <HttpError 400 when requesting https://sheets.googleapis.com/v4/spreadsheets/12N5EFu6gkXbq5u6rTh-gBX10kLlVCY-bjq2ilsRmlS8:batchUpdate?alt=json returned "Invalid requests[5].repeatCell: No grid with id: 1". Details: "Invalid requests[5].repeatCell: No grid with id: 1">
+2025-04-04 22:33:47,191 - INFO - 127.0.0.1 - - [04/Apr/2025 22:33:47] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:33:47,230 - INFO - 127.0.0.1 - - [04/Apr/2025 22:33:47] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:33:47,276 - INFO - 127.0.0.1 - - [04/Apr/2025 22:33:47] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:33:47,283 - INFO - 127.0.0.1 - - [04/Apr/2025 22:33:47] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:34:29,262 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:34:29,263 - INFO - file_cache is only supported with oauth2client<4.0.0
+2025-04-04 22:34:33,029 - ERROR - Error al exportar reporte financiero: <HttpError 400 when requesting https://sheets.googleapis.com/v4/spreadsheets/17R4MB9mYrCK7w4HgBp6OZlIe8EQIsK9WZTLhXdqONRk:batchUpdate?alt=json returned "Invalid requests[5].repeatCell: No grid with id: 1". Details: "Invalid requests[5].repeatCell: No grid with id: 1">
+2025-04-04 22:34:33,032 - INFO - 127.0.0.1 - - [04/Apr/2025 22:34:33] "[32mGET /cashflow/exportar-reporte HTTP/1.1[0m" 302 -
+2025-04-04 22:34:33,060 - INFO - 127.0.0.1 - - [04/Apr/2025 22:34:33] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:34:33,125 - INFO - 127.0.0.1 - - [04/Apr/2025 22:34:33] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:34:33,129 - INFO - 127.0.0.1 - - [04/Apr/2025 22:34:33] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:36:06,991 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:06] "GET /facturas HTTP/1.1" 200 -
+2025-04-04 22:36:07,041 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:36:07,075 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:36:07,807 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:07] "GET /cotizaciones HTTP/1.1" 200 -
+2025-04-04 22:36:07,847 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:07] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:36:07,852 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:07] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:36:08,540 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:08] "GET /clientes HTTP/1.1" 200 -
+2025-04-04 22:36:08,574 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:08] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:36:08,579 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:08] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:36:09,254 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:09] "GET / HTTP/1.1" 200 -
+2025-04-04 22:36:09,287 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:09] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:36:09,291 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:09] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -
+2025-04-04 22:36:10,150 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:10] "GET /cashflow HTTP/1.1" 200 -
+2025-04-04 22:36:10,183 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:10] "[36mGET /static/css/style.css HTTP/1.1[0m" 304 -
+2025-04-04 22:36:10,193 - INFO - 127.0.0.1 - - [04/Apr/2025 22:36:10] "[36mGET /static/js/main.js HTTP/1.1[0m" 304 -

@@ -8,6 +8,7 @@ import backup_drive
 import logging
 from werkzeug.utils import secure_filename
 import glob
+import re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'clave_secreta_para_desarrollo'
@@ -317,41 +318,70 @@ def health_check():
 # Rutas para el módulo de cashflow
 @app.route('/cashflow')
 def cashflow_dashboard():
-    cuentas = CuentaBancaria.query.all()
-    categorias = CategoriaTransaccion.query.all()
-    transacciones = Transaccion.query.order_by(Transaccion.fecha.desc()).all()
-    
-    # Calcular totales
-    total_ingresos = sum(t.monto for t in transacciones if t.tipo == 'ingreso')
-    total_gastos = sum(t.monto for t in transacciones if t.tipo == 'gasto')
-    balance = total_ingresos - total_gastos
-    
-    return render_template('cashflow/dashboard.html', 
-                         cuentas=cuentas, 
-                         categorias=categorias, 
-                         transacciones=transacciones,
-                         total_ingresos=total_ingresos,
-                         total_gastos=total_gastos,
-                         balance=balance)
+    try:
+        cuentas = CuentaBancaria.query.all()
+        categorias = CategoriaTransaccion.query.all()
+        transacciones = Transaccion.query.order_by(Transaccion.fecha.desc()).all()
+        
+        # Calcular totales con validación
+        total_ingresos = sum(t.monto for t in transacciones if t.tipo == 'ingreso' and t.monto is not None)
+        total_gastos = sum(t.monto for t in transacciones if t.tipo == 'gasto' and t.monto is not None)
+        
+        # Calcular el saldo total de las cuentas bancarias
+        saldo_cuentas = sum(c.saldo_actual for c in cuentas if c.saldo_actual is not None)
+        
+        # El balance ahora incluye el saldo de las cuentas + ingresos - gastos
+        balance = saldo_cuentas + total_ingresos - total_gastos
+        
+        # Validar saldos de cuentas
+        for cuenta in cuentas:
+            if cuenta.saldo_actual is None:
+                cuenta.saldo_actual = 0.0
+                db.session.add(cuenta)
+        
+        db.session.commit()
+        
+        return render_template('cashflow/dashboard.html', 
+                             cuentas=cuentas, 
+                             categorias=categorias, 
+                             transacciones=transacciones,
+                             total_ingresos=total_ingresos,
+                             total_gastos=total_gastos,
+                             balance=balance,
+                             saldo_cuentas=saldo_cuentas)
+    except Exception as e:
+        flash(f'Error al cargar el dashboard: {str(e)}', 'error')
+        return redirect(url_for('home'))
 
 @app.route('/cashflow/cuentas', methods=['GET', 'POST'])
 def gestionar_cuentas():
     if request.method == 'POST':
-        nombre = request.form['nombre']
-        tipo = request.form['tipo']
-        saldo_inicial = float(request.form.get('saldo_inicial', 0))
-        
-        nueva_cuenta = CuentaBancaria(
-            nombre=nombre,
-            tipo=tipo,
-            saldo_actual=saldo_inicial
-        )
-        
-        db.session.add(nueva_cuenta)
-        db.session.commit()
-        
-        flash('Cuenta creada correctamente')
-        return redirect(url_for('cashflow_dashboard'))
+        try:
+            nombre = request.form['nombre']
+            tipo = request.form['tipo']
+            saldo_inicial = float(request.form.get('saldo_inicial', 0))
+            
+            if saldo_inicial < 0:
+                flash('El saldo inicial no puede ser negativo', 'error')
+                return redirect(url_for('gestionar_cuentas'))
+            
+            nueva_cuenta = CuentaBancaria(
+                nombre=nombre,
+                tipo=tipo,
+                saldo_actual=saldo_inicial
+            )
+            
+            db.session.add(nueva_cuenta)
+            db.session.commit()
+            
+            flash('Cuenta creada correctamente', 'success')
+            return redirect(url_for('cashflow_dashboard'))
+        except ValueError:
+            flash('El saldo inicial debe ser un número válido', 'error')
+            return redirect(url_for('gestionar_cuentas'))
+        except Exception as e:
+            flash(f'Error al crear la cuenta: {str(e)}', 'error')
+            return redirect(url_for('gestionar_cuentas'))
     
     cuentas = CuentaBancaria.query.all()
     return render_template('cashflow/cuentas.html', cuentas=cuentas)
@@ -359,21 +389,25 @@ def gestionar_cuentas():
 @app.route('/cashflow/categorias', methods=['GET', 'POST'])
 def gestionar_categorias():
     if request.method == 'POST':
-        nombre = request.form['nombre']
-        tipo = request.form['tipo']
-        descripcion = request.form.get('descripcion')
-        
-        nueva_categoria = CategoriaTransaccion(
-            nombre=nombre,
-            tipo=tipo,
-            descripcion=descripcion
-        )
-        
-        db.session.add(nueva_categoria)
-        db.session.commit()
-        
-        flash('Categoría creada correctamente')
-        return redirect(url_for('cashflow_dashboard'))
+        try:
+            nombre = request.form['nombre']
+            tipo = request.form['tipo']
+            descripcion = request.form.get('descripcion')
+            
+            nueva_categoria = CategoriaTransaccion(
+                nombre=nombre,
+                tipo=tipo,
+                descripcion=descripcion
+            )
+            
+            db.session.add(nueva_categoria)
+            db.session.commit()
+            
+            flash('Categoría creada correctamente', 'success')
+            return redirect(url_for('cashflow_dashboard'))
+        except Exception as e:
+            flash(f'Error al crear la categoría: {str(e)}', 'error')
+            return redirect(url_for('gestionar_categorias'))
     
     categorias = CategoriaTransaccion.query.all()
     return render_template('cashflow/categorias.html', categorias=categorias)
@@ -381,42 +415,70 @@ def gestionar_categorias():
 @app.route('/cashflow/transacciones', methods=['GET', 'POST'])
 def gestionar_transacciones():
     if request.method == 'POST':
-        cuenta_id = request.form['cuenta_id']
-        categoria_id = request.form['categoria_id']
-        fecha = datetime.strptime(request.form['fecha'], '%Y-%m-%d')
-        monto = float(request.form['monto'])
-        tipo = request.form['tipo']
-        descripcion = request.form.get('descripcion')
-        
-        # Manejar comprobante si se subió uno
-        comprobante = None
-        if 'comprobante' in request.files:
-            archivo = request.files['comprobante']
-            if archivo.filename:
-                filename = secure_filename(archivo.filename)
-                # Asegurarse de que el directorio existe
-                comprobantes_dir = os.path.join('static', 'comprobantes')
-                os.makedirs(comprobantes_dir, exist_ok=True)
-                # Guardar el archivo
-                archivo.save(os.path.join(comprobantes_dir, filename))
-                comprobante = filename
-        
-        nueva_transaccion = Transaccion(
-            cuenta_id=cuenta_id,
-            categoria_id=categoria_id,
-            fecha=fecha,
-            monto=monto,
-            tipo=tipo,
-            descripcion=descripcion,
-            comprobante=comprobante
-        )
-        
-        db.session.add(nueva_transaccion)
-        nueva_transaccion.aplicar_transaccion()
-        db.session.commit()
-        
-        flash('Transacción registrada correctamente')
-        return redirect(url_for('cashflow_dashboard'))
+        try:
+            cuenta_id = request.form['cuenta_id']
+            categoria_id = request.form['categoria_id']
+            fecha = datetime.strptime(request.form['fecha'], '%Y-%m-%d')
+            monto = float(request.form['monto'])
+            tipo = request.form['tipo']
+            descripcion = request.form.get('descripcion')
+            
+            if monto <= 0:
+                flash('El monto debe ser mayor a 0', 'error')
+                return redirect(url_for('gestionar_transacciones'))
+            
+            # Validar que la cuenta existe
+            cuenta = CuentaBancaria.query.get(cuenta_id)
+            if not cuenta:
+                flash('La cuenta seleccionada no existe', 'error')
+                return redirect(url_for('gestionar_transacciones'))
+            
+            # Validar que la categoría existe
+            categoria = CategoriaTransaccion.query.get(categoria_id)
+            if not categoria:
+                flash('La categoría seleccionada no existe', 'error')
+                return redirect(url_for('gestionar_transacciones'))
+            
+            # Validar que el tipo de transacción coincide con la categoría
+            if categoria.tipo != tipo:
+                flash('El tipo de transacción no coincide con la categoría seleccionada', 'error')
+                return redirect(url_for('gestionar_transacciones'))
+            
+            # Manejar comprobante si se subió uno
+            comprobante = None
+            if 'comprobante' in request.files:
+                archivo = request.files['comprobante']
+                if archivo.filename:
+                    filename = secure_filename(archivo.filename)
+                    # Asegurarse de que el directorio existe
+                    comprobantes_dir = os.path.join('static', 'comprobantes')
+                    os.makedirs(comprobantes_dir, exist_ok=True)
+                    # Guardar el archivo
+                    archivo.save(os.path.join(comprobantes_dir, filename))
+                    comprobante = filename
+            
+            nueva_transaccion = Transaccion(
+                cuenta_id=cuenta_id,
+                categoria_id=categoria_id,
+                fecha=fecha,
+                monto=monto,
+                tipo=tipo,
+                descripcion=descripcion,
+                comprobante=comprobante
+            )
+            
+            db.session.add(nueva_transaccion)
+            nueva_transaccion.aplicar_transaccion()
+            db.session.commit()
+            
+            flash('Transacción registrada correctamente', 'success')
+            return redirect(url_for('cashflow_dashboard'))
+        except ValueError:
+            flash('Los datos ingresados no son válidos', 'error')
+            return redirect(url_for('gestionar_transacciones'))
+        except Exception as e:
+            flash(f'Error al registrar la transacción: {str(e)}', 'error')
+            return redirect(url_for('gestionar_transacciones'))
     
     cuentas = CuentaBancaria.query.all()
     categorias = CategoriaTransaccion.query.all()
@@ -444,12 +506,46 @@ def exportar_reporte_financiero():
             )
             
             if exito:
-                flash(f'Reporte financiero exportado correctamente. {mensaje}', 'success')
+                # Extraer el enlace del mensaje
+                enlace_match = re.search(r'Enlace: (https://docs\.google\.com/spreadsheets/d/.*?/edit)', mensaje)
+                if enlace_match:
+                    enlace = enlace_match.group(1)
+                    flash('Reporte financiero exportado correctamente.', 'success')
+                    # Redirigir al usuario al enlace del reporte
+                    return redirect(enlace)
+                else:
+                    flash(f'Reporte financiero exportado correctamente. {mensaje}', 'success')
             else:
                 flash(f'Error al exportar reporte: {mensaje}', 'error')
+            
+            # Si no se pudo extraer el enlace o hubo un error, redirigir al dashboard
+            return redirect(url_for('cashflow_dashboard'))
     except Exception as e:
         flash(f'Error al exportar reporte: {str(e)}', 'error')
-        logging.error(f"Error al exportar reporte financiero: {str(e)}")
+        return redirect(url_for('cashflow_dashboard'))
+
+@app.route('/cashflow/transacciones/eliminar/<int:id>')
+def eliminar_transaccion(id):
+    try:
+        transaccion = Transaccion.query.get_or_404(id)
+        
+        # Obtener la cuenta asociada a la transacción
+        cuenta = transaccion.cuenta
+        
+        # Revertir el saldo de la cuenta
+        if transaccion.tipo == 'ingreso':
+            cuenta.saldo_actual -= transaccion.monto
+        else:  # tipo == 'gasto'
+            cuenta.saldo_actual += transaccion.monto
+        
+        # Eliminar la transacción
+        db.session.delete(transaccion)
+        db.session.commit()
+        
+        flash('Transacción eliminada correctamente', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error al eliminar la transacción: {str(e)}', 'error')
     
     return redirect(url_for('cashflow_dashboard'))
 
