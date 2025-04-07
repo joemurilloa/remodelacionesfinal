@@ -80,7 +80,6 @@ def generar_pdf_cotizacion(cotizacion):
     data = [
         ["CLIENT INFORMATION"],
         [f"Name: {cotizacion.cliente.nombre}"],
-        [f"Tax ID: {cotizacion.cliente.rut or 'Not specified'}"],
         [f"Address: {cotizacion.cliente.direccion or 'Not specified'}"],
         [f"Phone: {cotizacion.cliente.telefono or 'Not specified'}"],
         [f"Email: {cotizacion.cliente.email or 'Not specified'}"]
@@ -167,9 +166,10 @@ def generar_pdf_cotizacion(cotizacion):
     elements.append(Paragraph("<b>Terms and Conditions:</b>", styles['Normal']))
     elements.append(Paragraph("1. This quote is valid until the date specified above.", styles['Normal']))
     elements.append(Paragraph("2. Prices may change without notice after the expiration date.", styles['Normal']))
-    elements.append(Paragraph("3. Payment methods: Bank transfer, check, or credit card.", styles['Normal']))
-    elements.append(Paragraph("4. 50% deposit required to start the project.", styles['Normal']))
-    
+    elements.append(Paragraph("3. Payment methods: Zell transfer, or credit card.", styles['Normal']))
+    elements.append(Paragraph("4. A 30% deposit is required prior to the start of the project.", styles['Normal']))
+    elements.append(Paragraph("   A 40% progress payment will be due once the project is halfway completed.", styles['Normal']))
+    elements.append(Paragraph("   The remaining 30% is due upon project completion and final approval.", styles['Normal']))
     # Add signature spaces
     elements.append(Spacer(1, 0.5*inch))
     
@@ -269,7 +269,6 @@ def generar_pdf_factura(factura):
     data = [
         ["CLIENT INFORMATION"],
         [f"Name: {factura.cliente.nombre}"],
-        [f"Tax ID: {factura.cliente.rut or 'Not specified'}"],
         [f"Address: {factura.cliente.direccion or 'Not specified'}"],
         [f"Phone: {factura.cliente.telefono or 'Not specified'}"],
         [f"Email: {factura.cliente.email or 'Not specified'}"]
@@ -366,12 +365,8 @@ def generar_pdf_factura(factura):
     elements.append(Spacer(1, 0.5*inch))
     elements.append(Paragraph("<b>Payment Instructions:</b>", styles['Normal']))
     elements.append(Paragraph("1. Please make payment within the specified due date.", styles['Normal']))
-    elements.append(Paragraph("2. Payment methods: Bank transfer, check, or credit card.", styles['Normal']))
-    elements.append(Paragraph("3. For bank transfers, please use the following account:", styles['Normal']))
-    elements.append(Paragraph("   Bank: [Bank Name]", styles['Normal']))
-    elements.append(Paragraph("   Account: [Account Number]", styles['Normal']))
-    elements.append(Paragraph("   Routing: [Routing Number]", styles['Normal']))
-    elements.append(Paragraph("4. Please include the invoice number in your payment reference.", styles['Normal']))
+    elements.append(Paragraph("2. Payment methods: Zelle payment, check, or credit card.", styles['Normal']))
+    elements.append(Paragraph("3. Please include the invoice number in your payment reference.", styles['Normal']))
     
     # Add signature spaces
     elements.append(Spacer(1, 1*inch))

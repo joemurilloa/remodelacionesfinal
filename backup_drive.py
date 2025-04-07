@@ -136,7 +136,7 @@ def exportar_clientes_a_csv():
         
         # Escribir datos en CSV
         with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
-            fieldnames = ['ID', 'Nombre', 'RUT', 'Email', 'Teléfono', 'Dirección', 'Fecha de Creación']
+            fieldnames = ['ID', 'Nombre', 'Email', 'Teléfono', 'Dirección', 'Fecha de Creación']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             
             writer.writeheader()
@@ -144,7 +144,6 @@ def exportar_clientes_a_csv():
                 writer.writerow({
                     'ID': cliente.id,
                     'Nombre': cliente.nombre,
-                    'RUT': cliente.rut or '',
                     'Email': cliente.email or '',
                     'Teléfono': cliente.telefono or '',
                     'Dirección': cliente.direccion or '',
@@ -247,7 +246,7 @@ def exportar_clientes_a_sheets(cliente_nuevo=None):
             spreadsheet_id = file.get('id')
             
             # Configurar encabezados
-            headers = [['ID', 'Nombre', 'RUT', 'Email', 'Teléfono', 'Dirección', 'Fecha de Creación']]
+            headers = [['ID', 'Nombre','Email', 'Teléfono', 'Dirección', 'Fecha de Creación']]
             sheets_service.spreadsheets().values().update(
                 spreadsheetId=spreadsheet_id,
                 range='A1',
@@ -263,7 +262,6 @@ def exportar_clientes_a_sheets(cliente_nuevo=None):
             values.append([
                 cliente_nuevo.id,
                 cliente_nuevo.nombre,
-                cliente_nuevo.rut or '',
                 cliente_nuevo.email or '',
                 cliente_nuevo.telefono or '',
                 cliente_nuevo.direccion or '',
@@ -278,7 +276,6 @@ def exportar_clientes_a_sheets(cliente_nuevo=None):
                 values.append([
                     cliente.id,
                     cliente.nombre,
-                    cliente.rut or '',
                     cliente.email or '',
                     cliente.telefono or '',
                     cliente.direccion or '',

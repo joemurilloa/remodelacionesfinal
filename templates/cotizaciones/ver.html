@@ -31,8 +31,8 @@
                         <p>{{ cotizacion.cliente.nombre }}</p>
                     </div>
                     <div class="col-md-6">
-                        <h6>RUT:</h6>
-                        <p>{{ cotizacion.cliente.rut or 'No especificado' }}</p>
+                        <h6></h6>
+                        <p>{{ cotizacion.cliente.rut or '' }}</p>
                     </div>
                 </div>
                 
@@ -134,8 +134,8 @@
                         <span>{{ cotizacion.cliente.nombre }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>RUT:</span>
-                        <span>{{ cotizacion.cliente.rut or 'No especificado' }}</span>
+                        <span></span>
+                        <span>{{ cotizacion.cliente.rut or '' }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Email:</span>

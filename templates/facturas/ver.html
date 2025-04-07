@@ -28,8 +28,8 @@
                         <p>{{ factura.cliente.nombre }}</p>
                     </div>
                     <div class="col-md-6">
-                        <h6>RUT:</h6>
-                        <p>{{ factura.cliente.rut or 'No especificado' }}</p>
+                        <h6></h6>
+                        <p>{{ factura.cliente.rut or '' }}</p>
                     </div>
                 </div>
                 
@@ -141,8 +141,8 @@
                         <span>{{ factura.cliente.nombre }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>RUT:</span>
-                        <span>{{ factura.cliente.rut or 'No especificado' }}</span>
+                        <span></span>
+                        <span>{{ factura.cliente.rut or'' }}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Email:</span>

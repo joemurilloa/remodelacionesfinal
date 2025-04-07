@@ -132,10 +132,10 @@ def nuevo_cliente():
         email = request.form['email']
         telefono = request.form['telefono']
         direccion = request.form['direccion']
-        rut = request.form['rut']
+        
         
         nuevo_cliente = Cliente(nombre=nombre, email=email, telefono=telefono, 
-                              direccion=direccion, rut=rut)
+                              direccion=direccion)
         db.session.add(nuevo_cliente)
         db.session.commit()
         flash('Cliente agregado correctamente')
@@ -161,7 +161,7 @@ def editar_cliente(id):
         cliente.email = request.form['email']
         cliente.telefono = request.form['telefono']
         cliente.direccion = request.form['direccion']
-        cliente.rut = request.form['rut']
+
         
         db.session.commit()
         flash('Cliente actualizado correctamente')

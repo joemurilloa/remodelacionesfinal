@@ -23,10 +23,7 @@
                     <div class="invalid-feedback">El nombre es obligatorio.</div>
                 </div>
                 
-                <div class="col-md-6 mb-3">
-                    <label for="rut" class="form-label">TAX ID</label>
-                    <input type="text" class="form-control" id="rut" name="rut" placeholder="12.345.678-9">
-                </div>
+              
                 
                 <div class="col-md-6 mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -73,23 +70,8 @@
             form.classList.add('was-validated');
         });
         
-        // Formateo de RUT chileno (opcional)
-        const rutInput = document.getElementById('rut');
-        if (rutInput) {
-            rutInput.addEventListener('blur', function() {
-                let rut = this.value.replace(/\./g, '').replace('-', '');
-                if (rut.length > 1) {
-                    const dv = rut.slice(-1);
-                    rut = rut.slice(0, -1);
-                    
-                    // Formatear número
-                    rut = rut.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-                    
-                    // Agregar guión y dígito verificador
-                    this.value = rut + '-' + dv;
-                }
+        
             });
-        }
-    });
+        
 </script>
 {% endblock %}
