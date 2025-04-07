@@ -60,60 +60,53 @@
     </div>
     
     <!-- Resumen financiero -->
-    <div class="row mb-4">
-        <div class="col-md-4">
-            <div class="card card-dashboard bg-success text-white">
-                <div class="card-body stats-card">
-                    <div class="stats-icon">
-                        <i class="fas fa-arrow-circle-up"></i>
-                    </div>
-                    <h5 class="card-title">Total Ingresos</h5>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <h3 class="stats-number mb-0">${{ "{:,.2f}".format(total_ingresos) }}</h3>
-                        <span class="ms-2 trend-indicator">
-                            <!-- Indicador de tendencia -->
-                        </span>
-                    </div>
-                </div>
+    <!-- INICIO: Reemplaza toda esta sección de tarjetas -->
+<div class="row mb-4">
+    <!-- Tarjeta de Ingresos: VERDE -->
+    <div class="col-md-4">
+        <div style="background-color: #28a745; color: white; border-radius: 8px; padding: 20px; height: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;">
+                <i class="fas fa-arrow-circle-up" style="color: white;"></i>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-dashboard bg-danger text-white">
-                <div class="card-body stats-card">
-                    <div class="stats-icon">
-                        <i class="fas fa-arrow-circle-down"></i>
-                    </div>
-                    <h5 class="card-title">Total Gastos</h5>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <h3 class="stats-number mb-0">${{ "{:,.2f}".format(total_gastos) }}</h3>
-                        <span class="ms-2 trend-indicator">
-                            <!-- Indicador de tendencia -->
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card card-dashboard {% if balance >= 0 %}bg-primary{% else %}bg-warning{% endif %} text-white">
-                <div class="card-body stats-card">
-                    <div class="stats-icon">
-                        <i class="fas fa-balance-scale"></i>
-                    </div>
-                    <h5 class="card-title">Balance</h5>
-                    <div class="d-flex justify-content-center align-items-center">
-                        <h3 class="stats-number mb-0">${{ "{:,.2f}".format(balance) }}</h3>
-                        <span class="ms-2 trend-indicator">
-                            {% if balance >= 0 %}
-                                <i class="fas fa-arrow-up trend-up"></i>
-                            {% else %}
-                                <i class="fas fa-arrow-down trend-down"></i>
-                            {% endif %}
-                        </span>
-                    </div>
-                </div>
+            <h5 style="color: white; font-weight: 600; margin-bottom: 15px;">Total Ingresos</h5>
+            <div style="font-size: 1.8rem; font-weight: 700; color: white;">
+                ${{ "{:,.2f}".format(total_ingresos) }}
             </div>
         </div>
     </div>
+    
+    <!-- Tarjeta de Gastos: ROJO -->
+    <div class="col-md-4">
+        <div style="background-color: #dc3545; color: white; border-radius: 8px; padding: 20px; height: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;">
+                <i class="fas fa-arrow-circle-down" style="color: white;"></i>
+            </div>
+            <h5 style="color: white; font-weight: 600; margin-bottom: 15px;">Total Gastos</h5>
+            <div style="font-size: 1.8rem; font-weight: 700; color: white;">
+                ${{ "{:,.2f}".format(total_gastos) }}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tarjeta de Balance: AZUL -->
+    <div class="col-md-4">
+        <div style="background-color: #0066cc; color: white; border-radius: 8px; padding: 20px; height: 100%; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
+            <div style="font-size: 2.5rem; margin-bottom: 15px;">
+                <i class="fas fa-balance-scale" style="color: white;"></i>
+            </div>
+            <h5 style="color: white; font-weight: 600; margin-bottom: 15px;">Balance</h5>
+            <div style="font-size: 1.8rem; font-weight: 700; color: white;">
+                ${{ "{:,.2f}".format(balance) }}
+                {% if balance >= 0 %}
+                    <i class="fas fa-arrow-up" style="font-size: 1rem; color: white;"></i>
+                {% else %}
+                    <i class="fas fa-arrow-down" style="font-size: 1rem; color: white;"></i>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FIN: Reemplaza toda esta sección de tarjetas -->
     
     <!-- Acciones rápidas -->
     <div class="row mb-4">

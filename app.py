@@ -27,9 +27,97 @@ with app.app_context():
     db.create_all()
 
 # Rutas para la página principal
+# Actualizar la ruta para la página principal en app.py
 @app.route('/')
 def home():
-    return render_template('home.html')
+    try:
+        # Obtener datos para el dashboard
+        clientes = Cliente.query.all()
+        cotizaciones = Cotizacion.query.all()
+        facturas = Factura.query.all()
+        cuentas = CuentaBancaria.query.all()
+        transacciones = Transaccion.query.order_by(Transaccion.fecha.desc()).limit(10).all()
+        
+        # Calcular estadísticas
+        total_clientes = len(clientes)
+        total_cotizaciones = len(cotizaciones)
+        total_facturas = len(facturas)
+        
+        # Calcular cotizaciones activas (no vencidas)
+        cotizaciones_activas = sum(1 for c in cotizaciones if not c.esta_vencida)
+        
+        # Facturas pendientes de pago
+        facturas_pendientes = sum(1 for f in facturas if not f.pagada)
+        
+        # Obtener facturas recientes
+        facturas_recientes = Factura.query.order_by(Factura.fecha.desc()).limit(5).all()
+        
+        # Calcular saldo total en cuentas
+        saldo_actual = sum(cuenta.saldo_actual for cuenta in cuentas if cuenta.saldo_actual is not None)
+        
+        # Calcular ingresos y gastos del mes actual
+        primer_dia_mes = datetime.now().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        ingresos_mes = sum(t.monto for t in transacciones if t.tipo == 'ingreso' and t.fecha >= primer_dia_mes)
+        gastos_mes = sum(t.monto for t in transacciones if t.tipo == 'gasto' and t.fecha >= primer_dia_mes)
+        balance_mes = ingresos_mes - gastos_mes
+        
+        # Calcular clientes nuevos este mes
+        clientes_nuevos = sum(1 for c in clientes if c.fecha_creacion and c.fecha_creacion >= primer_dia_mes)
+        
+        # Cotizaciones generadas este mes
+        cotizaciones_mes = sum(1 for c in cotizaciones if c.fecha >= primer_dia_mes)
+        
+        # Simular actividad reciente
+        actividad_reciente = []
+        
+        # Agregar transacciones recientes a la actividad
+        for t in transacciones[:3]:
+            tipo_desc = "ingreso" if t.tipo == "ingreso" else "gasto"
+            actividad_reciente.append({
+                'tipo': 'transaccion',
+                'descripcion': f"Transacción de {tipo_desc}: ${t.monto:.2f}",
+                'fecha': t.fecha.strftime('%d/%m/%Y %H:%M')
+            })
+        
+        # Agregar facturas recientes a la actividad
+        for f in facturas_recientes[:2]:
+            actividad_reciente.append({
+                'tipo': 'factura',
+                'descripcion': f"Factura #{f.id} para {f.cliente.nombre}",
+                'fecha': f.fecha.strftime('%d/%m/%Y %H:%M')
+            })
+        
+        # Agregar cotizaciones recientes a la actividad
+        cotizaciones_recientes = Cotizacion.query.order_by(Cotizacion.fecha.desc()).limit(2).all()
+        for c in cotizaciones_recientes:
+            actividad_reciente.append({
+                'tipo': 'cotizacion',
+                'descripcion': f"Cotización #{c.id} para {c.cliente.nombre}",
+                'fecha': c.fecha.strftime('%d/%m/%Y %H:%M')
+            })
+        
+        # Ordenar por fecha (más reciente primero)
+        actividad_reciente = sorted(actividad_reciente, key=lambda x: x['fecha'], reverse=True)[:5]
+        
+        return render_template('home.html', 
+                              total_clientes=total_clientes,
+                              total_cotizaciones=total_cotizaciones,
+                              total_facturas=total_facturas,
+                              cotizaciones_activas=cotizaciones_activas,
+                              facturas_pendientes=facturas_pendientes,
+                              facturas_recientes=facturas_recientes,
+                              saldo_actual=saldo_actual,
+                              ingresos_mes=ingresos_mes,
+                              gastos_mes=gastos_mes,
+                              balance_mes=balance_mes,
+                              clientes_nuevos=clientes_nuevos,
+                              cotizaciones_mes=cotizaciones_mes,
+                              actividad_reciente=actividad_reciente)
+    except Exception as e:
+        # En caso de error, mostrar una página de inicio simplificada
+        import logging
+        logging.error(f"Error al cargar el dashboard: {str(e)}")
+        return render_template('home.html')
 
 # Rutas para clientes
 @app.route('/clientes')

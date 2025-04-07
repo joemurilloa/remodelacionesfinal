@@ -1,76 +1,479 @@
 {% extends 'base.html' %}
 
-{% block title %}Inicio - Sistema de Cotizaciones y Facturas{% endblock %}
+{% block title %}WNL - Sistema de Gestión{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #00439c, #0066cc);
+        color: white;
+        border-radius: 0.75rem;
+        padding: 2.5rem 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 25px rgba(0, 67, 156, 0.15);
+    }
+    
+    .hero-section h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .stats-card {
+        background: white;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        height: 100%;
+        transition: transform 0.3s, box-shadow 0.3s;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        border: none;
+    }
+    
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stats-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        background: #f8f9fa;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+    
+    .stats-number {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .quick-action-btn {
+        border-radius: 0.5rem;
+        padding: 0.8rem 1.5rem;
+        font-weight: 600;
+        margin: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 200px;
+    }
+    
+    .quick-action-btn i {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+    
+    .activity-item {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        transition: background-color 0.2s;
+    }
+    
+    .activity-item:hover {
+        background-color: #f8f9fa;
+    }
+    
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin-right: 1rem;
+    }
+    
+    .bg-light-primary {
+        background-color: rgba(0, 123, 255, 0.1);
+        color: #0d6efd;
+    }
+    
+    .bg-light-success {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+    }
+    
+    .bg-light-danger {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+    }
+    
+    .bg-light-warning {
+        background-color: rgba(255, 193, 7, 0.1);
+        color: #ffc107;
+    }
+    
+    .welcome-message {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.9;
+    }
+    
+    .metrics-value {
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #dadfe5;
+    }
+    
+    .metrics-label {
+        font-size: 0.9rem;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    
+    .card-dashboard {
+        border-radius: 0.75rem;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+        overflow: hidden;
+    }
+    
+    .card-dashboard .card-header {
+        background-color: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 1.25rem 1.5rem;
+        font-weight: 600;
+    }
+    
+    .logo-brand {
+        height: 60px;
+        margin-right: 1.5rem;
+    }
+    
+    .cashflow-chart {
+        height: 250px;
+    }
+    
+    .btn-action {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        transition: all 0.3s;
+    }
+    
+    .btn-action:hover {
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock %}
 
 {% block content %}
+<!-- Hero Section -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="hero-section">
+            <div class="d-flex align-items-center mb-4">
+                <img src="{{ url_for('static', filename='img/logo.png') }}" alt="WNL Logo" class="logo-brand">
+                <div>
+                    <h1>WNL Sistema de Gestión</h1>
+                    <p class="welcome-message mb-0">Bienvenido al centro de control para sus cotizaciones, facturas y finanzas.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+                    
+                    <div class="metrics-label"></div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+                    <div class="metrics-value">{{ total_clientes|default(0) }}</div>
+                    <div class="metrics-label">Clientes</div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-3 mb-md-0">
+                    <div class="metrics-value">{{ cotizaciones_activas|default(0) }}</div>
+                    <div class="metrics-label">Cotizaciones Activas</div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="metrics-value">{{ facturas_pendientes|default(0) }}</div>
+                    <div class="metrics-label">Facturas Pendientes</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Dashboard -->
 <div class="row">
-    <div class="col-md-12 text-center mb-4">
-        <h1 class="display-4">Sistema de Gestión de Cotizaciones y Facturas</h1>
-        <p class="lead">Una solución sencilla y eficiente para administrar tus cotizaciones y facturas.</p>
-    </div>
-</div>
-
-<div class="row mt-4">
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-                <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                <h3 class="card-title">Clientes</h3>
-                <p class="card-text">Administra tu cartera de clientes de forma sencilla.</p>
-                <a href="{{ url_for('listar_clientes') }}" class="btn btn-primary">
-                    <i class="fas fa-arrow-right me-1"></i> Ir a Clientes
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-                <i class="fas fa-file-alt fa-3x text-success mb-3"></i>
-                <h3 class="card-title">Cotizaciones</h3>
-                <p class="card-text">Crea y gestiona tus cotizaciones con facilidad.</p>
-                <a href="{{ url_for('listar_cotizaciones') }}" class="btn btn-success">
-                    <i class="fas fa-arrow-right me-1"></i> Ir a Cotizaciones
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-            <div class="card-body text-center">
-                <i class="fas fa-file-invoice fa-3x text-danger mb-3"></i>
-                <h3 class="card-title">Facturas</h3>
-                <p class="card-text">Gestiona tus facturas y convierte cotizaciones fácilmente.</p>
-                <a href="{{ url_for('listar_facturas') }}" class="btn btn-danger">
-                    <i class="fas fa-arrow-right me-1"></i> Ir a Facturas
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row mt-4">
-    <div class="col-md-12">
-        <div class="card border-info">
-            <div class="card-header bg-info text-white">
-                <i class="fas fa-info-circle me-1"></i> Información del Sistema
+    <!-- Left Column -->
+    <div class="col-lg-8">
+        <!-- Quick Actions -->
+        <div class="card card-dashboard mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Acciones Rápidas</h5>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Características principales:</h5>
-                <ul>
-                    <li>Gestión completa de clientes, cotizaciones y facturas</li>
-                    <li>Generación automática de documentos en PDF</li>
-                    <li>Sistema de respaldo automático a Google Drive cada 5 minutos</li>
-                    <li>Interfaz sencilla y fácil de usar</li>
-                    <li>Alojado gratuitamente en Netlify</li>
-                </ul>
-                <a href="{{ url_for('realizar_backup') }}" class="btn btn-outline-info">
-                    <i class="fas fa-database me-1"></i> Realizar Backup Manual
+                <div class="d-flex flex-wrap justify-content-center">
+                    <a href="{{ url_for('nuevo_cliente') }}" class="btn btn-primary quick-action-btn m-2">
+                        <i class="fas fa-user-plus"></i> Nuevo Cliente
+                    </a>
+                    <a href="{{ url_for('nueva_cotizacion') }}" class="btn btn-success quick-action-btn m-2">
+                        <i class="fas fa-file-alt"></i> Nueva Cotización
+                    </a>
+                    <a href="{{ url_for('gestionar_transacciones') }}" class="btn btn-info quick-action-btn m-2 text-white">
+                        <i class="fas fa-money-bill-wave"></i> Registrar Pago
+                    </a>
+                    <a href="{{ url_for('realizar_backup') }}" class="btn btn-secondary quick-action-btn m-2">
+                        <i class="fas fa-cloud-upload-alt"></i> Backup
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Overview -->
+        <div class="card card-dashboard mb-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Resumen Financiero</h5>
+            </div>
+            <div class="card-body">
+                <div class="cashflow-chart">
+                    <canvas id="financialChart"></canvas>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-4 text-center">
+                        <h6 class="text-muted">Ingresos (30 días)</h6>
+                        <h3 class="text-success">${{ '{:,.2f}'.format(ingresos_mes|default(0)) }}</h3>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h6 class="text-muted">Gastos (30 días)</h6>
+                        <h3 class="text-danger">${{ '{:,.2f}'.format(gastos_mes|default(0)) }}</h3>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h6 class="text-muted">Balance Mensual</h6>
+                        <h3 class="{% if balance_mes > 0 %}text-success{% else %}text-danger{% endif %}">
+                            ${{ '{:,.2f}'.format(balance_mes|default(0)) }}
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center">
+                <a href="{{ url_for('cashflow_dashboard') }}" class="btn btn-sm btn-outline-primary btn-action">
+                    Ver detalles financieros
                 </a>
+            </div>
+        </div>
+
+        <!-- Recent Invoices -->
+        <div class="card card-dashboard">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="fas fa-file-invoice me-2"></i>Facturas Recientes</h5>
+                <a href="{{ url_for('listar_facturas') }}" class="btn btn-sm btn-outline-primary">Ver todas</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Cliente</th>
+                                <th>Fecha</th>
+                                <th>Total</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for factura in facturas_recientes %}
+                            <tr>
+                                <td>{{ factura.numero_factura }}</td>
+                                <td>{{ factura.cliente.nombre }}</td>
+                                <td>{{ factura.fecha.strftime('%d/%m/%Y') }}</td>
+                                <td>${{ "{:,.2f}".format(factura.total) }}</td>
+                                <td>
+                                    {% if factura.pagada %}
+                                    <span class="badge bg-success">Pagada</span>
+                                    {% else %}
+                                    <span class="badge bg-warning text-dark">Pendiente</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('ver_factura', id=factura.id) }}" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="6" class="text-center py-3">No hay facturas recientes</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="col-lg-4">
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-6 col-lg-12 mb-4">
+                <div class="stats-card">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-light-primary">
+                            <i class="fas fa-users text-primary"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Clientes</h5>
+                            <div class="stats-number">{{ total_clientes|default(0) }}</div>
+                            <small class="text-muted">{{ clientes_nuevos|default(0) }} nuevos este mes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-12 mb-4">
+                <div class="stats-card">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-light-success">
+                            <i class="fas fa-file-alt text-success"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Cotizaciones</h5>
+                            <div class="stats-number">{{ total_cotizaciones|default(0) }}</div>
+                            <small class="text-muted">{{ cotizaciones_mes|default(0) }} generadas este mes</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-12 mb-4">
+                <div class="stats-card">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-light-danger">
+                            <i class="fas fa-file-invoice text-danger"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Facturas</h5>
+                            <div class="stats-number">{{ total_facturas|default(0) }}</div>
+                            <small class="text-muted">{{ facturas_pendientes|default(0) }} pendientes de pago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-12">
+                <div class="stats-card">
+                    <div class="d-flex align-items-center">
+                        <div class="stats-icon bg-light-warning">
+                            <i class="fas fa-chart-pie text-warning"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Cashflow</h5>
+                            <div class="stats-number">${{ "{:,.2f}".format(saldo_actual|default(0)) }}</div>
+                            <small class="text-muted">Saldo actual en cuentas</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="card card-dashboard">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="fas fa-history me-2"></i>Actividad Reciente</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="activity-feed">
+                    {% for actividad in actividad_reciente %}
+                    <div class="activity-item d-flex align-items-center">
+                        <div class="activity-icon 
+                            {% if actividad.tipo == 'cliente' %}bg-light-primary
+                            {% elif actividad.tipo == 'cotizacion' %}bg-light-success
+                            {% elif actividad.tipo == 'factura' %}bg-light-danger
+                            {% else %}bg-light-warning{% endif %}">
+                            <i class="fas 
+                                {% if actividad.tipo == 'cliente' %}fa-user
+                                {% elif actividad.tipo == 'cotizacion' %}fa-file-alt
+                                {% elif actividad.tipo == 'factura' %}fa-file-invoice
+                                {% else %}fa-money-bill-wave{% endif %}"></i>
+                        </div>
+                        <div>
+                            <h6 class="mb-0">{{ actividad.descripcion }}</h6>
+                            <small class="text-muted">{{ actividad.fecha }}</small>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="activity-item text-center py-4">
+                        <p class="mb-0 text-muted">No hay actividad reciente</p>
+                    </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Datos para el gráfico financiero (simulados)
+        const financialChart = document.getElementById('financialChart');
+        
+        // Array con los últimos 6 meses
+        const months = [];
+        const currentDate = new Date();
+        
+        for (let i = 5; i >= 0; i--) {
+            const date = new Date();
+            date.setMonth(currentDate.getMonth() - i);
+            months.push(date.toLocaleString('default', { month: 'short' }));
+        }
+        
+        // Datos de ejemplo - estos deberían venir de tu backend
+        const incomeData = [5000, 7500, 8000, 9500, 10000, 12000];
+        const expenseData = [4000, 5000, 5500, 6000, 7000, 7500];
+        
+        new Chart(financialChart, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [
+                    {
+                        label: 'Ingresos',
+                        data: incomeData,
+                        borderColor: 'rgba(40, 167, 69, 1)',
+                        backgroundColor: 'rgba(40, 167, 69, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Gastos',
+                        data: expenseData,
+                        borderColor: 'rgba(220, 53, 69, 1)',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    });
+</script>
 {% endblock %}
