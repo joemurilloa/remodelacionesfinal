@@ -50,6 +50,7 @@
                                     <th>Nombre</th>
                                     <th>Tipo</th>
                                     <th>Descripción</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -62,6 +63,16 @@
                                         </span>
                                     </td>
                                     <td>{{ categoria.descripcion }}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="{{ url_for('editar_categoria', id=categoria.id) }}" class="btn btn-outline-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url_for('eliminar_categoria', id=categoria.id) }}" class="btn btn-outline-danger" title="Eliminar" onclick="return confirm('¿Está seguro de que desea eliminar esta categoría?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -72,4 +83,4 @@
         </div>
     </div>
 </div>
-{% endblock %} 
+{% endblock %}

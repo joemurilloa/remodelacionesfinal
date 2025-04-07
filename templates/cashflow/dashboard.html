@@ -118,15 +118,17 @@
                         <a href="{{ url_for('gestionar_transacciones') }}" class="btn btn-primary action-button">
                             <i class="fas fa-plus-circle me-2"></i> Nueva Transacción
                         </a>
-                        <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-info action-button text-white">
+                        <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-secondary action-button text-white">
                             <i class="fas fa-university me-2"></i> Gestionar Cuentas
                         </a>
-                        <a href="{{ url_for('gestionar_categorias') }}" class="btn btn-success action-button">
+                        
+                        <a href="{{ url_for('gestionar_categorias') }}" class="btn btn-warning action-button text-dark">
                             <i class="fas fa-tags me-2"></i> Gestionar Categorías
                         </a>
-                        <a href="{{ url_for('exportar_reporte_financiero') }}" class="btn btn-warning action-button text-dark">
+                        <a href="{{ url_for('exportar_reporte_financiero') }}" class="btn btn-success action-button">
                             <i class="fas fa-chart-pie me-2"></i> Exportar Reporte
                         </a>
+                        
                     </div>
                 </div>
             </div>
@@ -252,9 +254,14 @@
                                     <td class="text-end fw-bold">${{ "{:,.2f}".format(transaccion.monto) }}</td>
                                     <td>{{ transaccion.descripcion }}</td>
                                     <td>
-                                        <a href="{{ url_for('eliminar_transaccion', id=transaccion.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta transacción?');">
-                                            <i class="fas fa-trash-alt"></i>
-                                        </a>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="{{ url_for('editar_transaccion', id=transaccion.id) }}" class="btn btn-sm btn-outline-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url_for('eliminar_transaccion', id=transaccion.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de que deseas eliminar esta transacción?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                                 {% endfor %}

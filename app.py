@@ -636,6 +636,144 @@ def eliminar_transaccion(id):
         flash(f'Error al eliminar la transacción: {str(e)}', 'error')
     
     return redirect(url_for('cashflow_dashboard'))
+@app.route('/cashflow/cuentas/editar/<int:id>', methods=['GET', 'POST'])
+def editar_cuenta(id):
+    cuenta = CuentaBancaria.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        try:
+            cuenta.nombre = request.form['nombre']
+            cuenta.tipo = request.form['tipo']
+            # Note: We don't update saldo_actual directly to avoid accounting issues
+            
+            db.session.commit()
+            flash('Cuenta actualizada correctamente', 'success')
+            return redirect(url_for('gestionar_cuentas'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error al actualizar la cuenta: {str(e)}', 'error')
+            return redirect(url_for('gestionar_cuentas'))
+    
+    return render_template('cashflow/editar_cuenta.html', cuenta=cuenta)
+
+@app.route('/cashflow/cuentas/eliminar/<int:id>')
+def eliminar_cuenta(id):
+    try:
+        cuenta = CuentaBancaria.query.get_or_404(id)
+        
+        # Check if there are transactions associated with this account
+        if cuenta.transacciones:
+            flash('No se puede eliminar la cuenta porque tiene transacciones asociadas', 'error')
+            return redirect(url_for('gestionar_cuentas'))
+        
+        db.session.delete(cuenta)
+        db.session.commit()
+        flash('Cuenta eliminada correctamente', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error al eliminar la cuenta: {str(e)}', 'error')
+    
+    return redirect(url_for('gestionar_cuentas'))
+
+@app.route('/cashflow/categorias/editar/<int:id>', methods=['GET', 'POST'])
+def editar_categoria(id):
+    categoria = CategoriaTransaccion.query.get_or_404(id)
+    
+    if request.method == 'POST':
+        try:
+            categoria.nombre = request.form['nombre']
+            # Do not change tipo to avoid accounting issues
+            categoria.descripcion = request.form.get('descripcion')
+            
+            db.session.commit()
+            flash('Categoría actualizada correctamente', 'success')
+            return redirect(url_for('gestionar_categorias'))
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error al actualizar la categoría: {str(e)}', 'error')
+            return redirect(url_for('gestionar_categorias'))
+    
+    return render_template('cashflow/editar_categoria.html', categoria=categoria)
+
+@app.route('/cashflow/categorias/eliminar/<int:id>')
+def eliminar_categoria(id):
+    try:
+        categoria = CategoriaTransaccion.query.get_or_404(id)
+        
+        # Check if there are transactions associated with this category
+        if categoria.transacciones:
+            flash('No se puede eliminar la categoría porque tiene transacciones asociadas', 'error')
+            return redirect(url_for('gestionar_categorias'))
+        
+        db.session.delete(categoria)
+        db.session.commit()
+        flash('Categoría eliminada correctamente', 'success')
+    except Exception as e:
+        db.session.rollback()
+        flash(f'Error al eliminar la categoría: {str(e)}', 'error')
+    
+    return redirect(url_for('gestionar_categorias'))
+
+@app.route('/cashflow/transacciones/editar/<int:id>', methods=['GET', 'POST'])
+def editar_transaccion(id):
+    transaccion = Transaccion.query.get_or_404(id)
+    cuentas = CuentaBancaria.query.all()
+    categorias = CategoriaTransaccion.query.all()
+    
+    if request.method == 'POST':
+        try:
+            # Get current transaction state to calculate account balance adjustments
+            cuenta_antigua = transaccion.cuenta
+            monto_antiguo = transaccion.monto
+            tipo_antiguo = transaccion.tipo
+            
+            # Get updated values
+            cuenta_id = request.form['cuenta_id']
+            categoria_id = request.form['categoria_id']
+            fecha = datetime.strptime(request.form['fecha'], '%Y-%m-%d')
+            monto = float(request.form['monto'])
+            tipo = request.form['tipo']
+            descripcion = request.form.get('descripcion')
+            
+            # Validate data
+            if monto <= 0:
+                flash('El monto debe ser mayor a 0', 'error')
+                return render_template('cashflow/editar_transaccion.html', transaccion=transaccion, cuentas=cuentas, categorias=categorias)
+            
+            # Reverse effect of old transaction
+            if tipo_antiguo == 'ingreso':
+                cuenta_antigua.saldo_actual -= monto_antiguo
+            else:  # tipo == 'gasto'
+                cuenta_antigua.saldo_actual += monto_antiguo
+            
+            # Apply new transaction
+            nueva_cuenta = CuentaBancaria.query.get(cuenta_id)
+            if tipo == 'ingreso':
+                nueva_cuenta.saldo_actual += monto
+            else:  # tipo == 'gasto'
+                nueva_cuenta.saldo_actual -= monto
+            
+            # Update transaction
+            transaccion.cuenta_id = cuenta_id
+            transaccion.categoria_id = categoria_id
+            transaccion.fecha = fecha
+            transaccion.monto = monto
+            transaccion.tipo = tipo
+            transaccion.descripcion = descripcion
+            
+            # Save changes
+            db.session.commit()
+            flash('Transacción actualizada correctamente', 'success')
+            return redirect(url_for('gestionar_transacciones'))
+        except ValueError:
+            flash('Los datos ingresados no son válidos', 'error')
+            return render_template('cashflow/editar_transaccion.html', transaccion=transaccion, cuentas=cuentas, categorias=categorias)
+        except Exception as e:
+            db.session.rollback()
+            flash(f'Error al actualizar la transacción: {str(e)}', 'error')
+            return render_template('cashflow/editar_transaccion.html', transaccion=transaccion, cuentas=cuentas, categorias=categorias)
+    
+    return render_template('cashflow/editar_transaccion.html', transaccion=transaccion, cuentas=cuentas, categorias=categorias)
 
 if __name__ == '__main__':
     app.run(debug=True)

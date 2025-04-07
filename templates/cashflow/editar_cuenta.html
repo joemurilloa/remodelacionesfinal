@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Editar Cuenta</h1>
+        <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left me-1"></i> Volver a Cuentas
+        </a>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h5 class="card-title mb-0">Datos de la Cuenta</h5>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ url_for('editar_cuenta', id=cuenta.id) }}">
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre de la Cuenta</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ cuenta.nombre }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tipo" class="form-label">Tipo de Cuenta</label>
+                            <select class="form-select" id="tipo" name="tipo" required>
+                                <option value="banco" {% if cuenta.tipo == 'banco' %}selected{% endif %}>Banco</option>
+                                <option value="caja" {% if cuenta.tipo == 'caja' %}selected{% endif %}>Caja</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="saldo_actual" class="form-label">Saldo Actual</label>
+                            <input type="text" class="form-control" value="${{ "%.2f"|format(cuenta.saldo_actual) }}" readonly>
+                            <div class="form-text">El saldo actual no se puede editar directamente, se actualiza mediante transacciones.</div>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ url_for('gestionar_cuentas') }}" class="btn btn-outline-secondary me-md-2">Cancelar</a>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -51,6 +51,7 @@
                                     <th>Tipo</th>
                                     <th>Saldo Actual</th>
                                     <th>Fecha de Creación</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -64,6 +65,16 @@
                                     </td>
                                     <td>${{ "%.2f"|format(cuenta.saldo_actual) }}</td>
                                     <td>{{ cuenta.fecha_creacion.strftime('%Y-%m-%d') }}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="{{ url_for('editar_cuenta', id=cuenta.id) }}" class="btn btn-outline-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url_for('eliminar_cuenta', id=cuenta.id) }}" class="btn btn-outline-danger" title="Eliminar" onclick="return confirm('¿Está seguro de que desea eliminar esta cuenta?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -74,4 +85,4 @@
         </div>
     </div>
 </div>
-{% endblock %} 
+{% endblock %}

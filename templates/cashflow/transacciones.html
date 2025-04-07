@@ -133,12 +133,23 @@
                                     </td>
                                     <td class="text-end">${{ "%.2f"|format(transaccion.monto) }}</td>
                                     <td>
-                                        {% if transaccion.comprobante %}
-                                        <a href="{{ url_for('static', filename='comprobantes/' + transaccion.comprobante) }}" 
-                                           target="_blank" class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-file-alt"></i>
-                                        </a>
-                                        {% endif %}
+                                        <div class="btn-group btn-group-sm">
+                                            <a href="{{ url_for('editar_transaccion', id=transaccion.id) }}" 
+                                               class="btn btn-sm btn-outline-primary" title="Editar">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url_for('eliminar_transaccion', id=transaccion.id) }}" 
+                                               class="btn btn-sm btn-outline-danger" title="Eliminar" 
+                                               onclick="return confirm('¿Estás seguro de que deseas eliminar esta transacción?');">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                            {% if transaccion.comprobante %}
+                                            <a href="{{ url_for('static', filename='comprobantes/' + transaccion.comprobante) }}" 
+                                               target="_blank" class="btn btn-sm btn-outline-info" title="Ver comprobante">
+                                                <i class="fas fa-file-alt"></i>
+                                            </a>
+                                            {% endif %}
+                                        </div>
                                     </td>
                                 </tr>
                                 {% endfor %}
